@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="center" style="background-image: url('logImage.png');height: 100%;">
+  <div  fxLayout="row" fxLayoutAlign="center" >
+    <div fxFlex="30">
+      <md-card class="example-card">
+        <md-card-header>
+          <div md-card-avatar class="example-header-image"></div>
+          <md-card-title>Sharzi</md-card-title>
+          <md-card-subtitle>Connexion</md-card-subtitle>
+        </md-card-header>
+        <md-card-content fxLayout="column"  >
+          <md-input-container>
+            <input mdInput #pseudo placeholder="pseudo" >
+          </md-input-container>
+          <md-input-container>
+            <input mdInput #pwd placeholder="mot de passe">
+          </md-input-container>
+          <button (click)="test()" md-button>Valider</button>
+          <div  fxLayout="row" fxLayoutAlign="center" >
+            <md-progress-bar *ngIf="loading" mode="indeterminate"></md-progress-bar>
+          </div>
+          
+        </md-card-content>
+
+        
+        
+      
+      </md-card>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body{
+    font-family: Roboto,"Helvetica Neue",sans-serif;
+}
+.material-icons.md-light { color:#777777; }
+.material-icons.md-lightblue { color:rgba(30, 109, 210, 0.73); }

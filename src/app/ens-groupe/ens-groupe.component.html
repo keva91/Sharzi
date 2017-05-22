@@ -1,0 +1,62 @@
+<div>
+    
+  <md-card class="example-card mat-elevation-z6">
+    <md-card-header>
+      <md-card-title>Groupes</md-card-title>
+    </md-card-header>
+    <div style="position:relative;">
+      <button [disabled]="selectedTab == 1" style="position:absolute;z-index:25;right:10px;top:7px" (click)="addTab()" md-button>Créer Groupe <i class="material-icons md-light ">add</i></button>
+    </div>
+    <md-card-content>
+      <md-tab-group dynamicHeight [(selectedIndex)]="selectedTab">
+        <md-tab *ngFor="let tab of tabs" [label]="tab.title">
+          <div [ngSwitch]="tab.type">
+            <div *ngSwitchCase="'list'" style="padding:10px 30px">
+            
+              <md-nav-list>
+                <md-list-item *ngFor="let groupe of groupes" isRippleEnabled>
+                  <div  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
+                    <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
+                    <div>
+                      <div md-line>{{groupe.nom}}</div>
+                      <div md-line>  {{groupe.projet.nom}} / Nbre :  {{groupe.nombre}} </div>
+                    </div>
+                  </div>
+                  <md-divider></md-divider>
+                </md-list-item>
+              </md-nav-list>
+              
+            </div>
+            <div *ngSwitchCase="'creation'">
+             <form [formGroup]="groupeForm" (ngSubmit)="createGroupe($event)" style="padding:20px 0;">
+
+                <div fxLayout="row" fxLayoutAlign="start center" >
+                  <md-input-container  fxFlex="20">
+                    <input formControlName="name" mdInput placeholder="Nom du groupe" >
+                  </md-input-container>
+
+                  <md-slider fxFlex="20" formControlName="nombre" class="example-margin" max="5" step="1" thumb-label="true" tick-interval="1" [value]="value" style="margin:0 0 0px 30px;"> </md-slider>
+
+                </div>
+                <div  fxLayout="row" style="margin: 10px 0;" >
+                  <md-select formControlName="projet"  fxFlex="20"  placeholder="Projet"  >
+                    <md-option *ngFor="let projet of projets" [value]="projet">
+                      {{projet.nom}}
+                    </md-option>
+                  </md-select>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end">
+                  <button  type="submit" md-button>Valider <i class="material-icons md-light ">done</i></button>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </md-tab>
+      </md-tab-group>
+    </md-card-content>
+  </md-card>
+
+</div>
+
+
