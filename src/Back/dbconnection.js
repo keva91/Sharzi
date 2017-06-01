@@ -13,15 +13,5 @@ database:'yo'
 
 });
 
-connection.connect(function(error){
-    if(error){
-        console.log(error)
-    }else{
-        console.log('success')
-    }
-
-});
-
-
 module.exports = connection;
 

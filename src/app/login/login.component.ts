@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
 
   loading = false;
 
+  mydata;
+
   constructor(
     private router: Router,
     private http: Http
@@ -29,10 +31,11 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     setTimeout(() => {
       console.log("yo timeout")
-       this.router.navigate(['/home']);
+       //this.router.navigate(['/home']);
        let headers = new Headers();
-       this.http.get('http://localhost:3000/').map(res => res.json()).subscribe(data =>{
+       this.http.get('http://localhost:3000/etudiant').map(res => res.json()).subscribe(data =>{
          console.log(data)
+         this.mydata = data[0].nom;
        })
     }, 2000);
    

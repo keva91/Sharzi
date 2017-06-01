@@ -4,21 +4,21 @@ var app = require('../server')
 var Etudiant = require('../models/Etudiant');
 	
 
-app.get('/',function(req,res)
+app.get('/etudiant',function(req,res)
 {
     console.log('befor get')
     
-        Etudiant.ObtEtudiant(function(err,rows){
-            if(err){
-                console.log(err)
-                res.json(err);
-            }else{
-                console.log(rows)
-                //res.send(rows);
-                res.json(rows);
-            }
-            
-        });
+    Etudiant.ObtEtudiant(function(err,rows){
+        if(err){
+            console.log(err)
+            res.json(err);
+        }else{
+            console.log(rows)
+            //res.send(rows);
+            res.json(rows);
+        }
+        
+    });
     
 });
 
