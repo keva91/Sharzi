@@ -13,7 +13,14 @@ var Jalon={
 
     ObtJalonParIdProjet:function(id,callback)
     {
-        return db.query("select * from Jalon where idProjet=?",[id],callback);
+        return db.query("select idNoteJ from Jalon where idProjet=?",[id],callback);
+    },
+
+    ObtNbMaxJalonsProjets:function(callback)
+    {
+        return db.query("SELECT MAX(jalonProjet) AS jalonProjet FROM (SELECT Count(*) AS jalonProjet " 
+                 + "FROM jalon j inner join projet p ON j.idProjet = p.idP group by p.idP "
+                 + ")jalonProjet;", callback);
     },
     
     ajouterJalon:function(Jalon,callback)

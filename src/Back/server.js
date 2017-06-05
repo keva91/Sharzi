@@ -28,3 +28,4 @@ app.listen(3000,function(){
 module.exports = app;
 
 var etudiant = require('./routes/Etudiant')
+var groupes = require('./routes/Groupes')

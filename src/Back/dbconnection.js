@@ -8,8 +8,8 @@ var connection=mysql.createConnection({
 
 host:'localhost',
 user:'root',
-password:'',
-database:'yo'
+password:'NIDEMAnidema9100',
+database:'jb_projet2'
 
 });
 

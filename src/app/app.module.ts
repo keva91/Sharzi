@@ -15,6 +15,7 @@ import { HomeComponent } from './home/homeEnseignant.component';
 import { LoginComponent } from './login/login.component';
 import { EnsProjetComponent } from './ens-projet/ens-projet.component';
 import { EnsGroupeComponent } from './ens-groupe/ens-groupe.component';
+import { EnsNoteComponent } from './ens-note/ens-note.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EnsGroupeComponent } from './ens-groupe/ens-groupe.component';
     HomeComponent,
     LoginComponent,
     EnsProjetComponent,
-    EnsGroupeComponent
+    EnsGroupeComponent,
+    EnsNoteComponent
   ],
   imports: [
     BrowserModule,
