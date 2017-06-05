@@ -1,6 +1,9 @@
 var db=require('../dbconnection');
 
 var Jalon_Projet={
+
+
+
     ObtJalon_ProjetById:function(id,callback)
     {
          return db.query("select * from Jalon_Projet where idJalon=?",[id],callback);
@@ -18,9 +21,9 @@ var Jalon_Projet={
 
     ObtNbMaxJalon_Projets:function(callback)
      {
-         return db.query("SELECT MAX(Jalon_ProjetProjet) AS Jalon_ProjetProjet FROM (SELECT Count(*) AS Jalon_ProjetProjet " 
+         return db.query("SELECT MAX(Jalon_Projet) AS Jalon_Projet FROM (SELECT Count(*) AS Jalon_Projet " 
                   + "FROM Jalon_Projet j inner join projet p ON j.idProjet = p.idP group by p.idP "
-                  + ")Jalon_ProjetProjet;", callback);
+                  + ")Jalon_Projet;", callback);
      },
     
     ajouterJalon_Projet:function(Jalon_Projet,callback)

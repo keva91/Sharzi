@@ -34,9 +34,9 @@ export class EnsNoteComponent implements OnInit {
     this.http.get('http://localhost:3000/note')
       .map(res => res.json())
       .subscribe(data =>{
-         console.log(data)
+        console.log(data)
         //  return this.mydata = data[0].jalonProjet;
-        return this.mydata = data;
+        return this.mydata = data[0][0].idProjet;
      })
   }
 }

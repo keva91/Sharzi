@@ -9,42 +9,65 @@ var Note = require('../models/Note');
 
 app.get('/note',function(req,res,next)
 {
-    var a;
-    var b;
     var c;
 
-    Jalon.ObtNbMaxJalonsProjets(function(err,rows1){
-          if(err)
-             res.send(err);
-        else
-          {
-
-             //res.send(rows, rows);
-             //console.log(rows);
-             //this.nbMaxJP = rows[0].jalonProjet;
-             //console.log(this.a);
-
-            Groupe.ObtTabNote(function(err,rows2)
+    Groupe.ObtTsGroupes(function(err,rows)
+    {
+        if(err)
+            res.send(err);
+        else 
+        {
+            Projet.ObtTsProjets(function(err,rows2)
             {
                 if(err)
                     res.send(err);
                 else 
                 {
-                    // res.send([rows] + [rows2]);
-                    // this.dataGroup = rows;
-                    //console.log(this.b);
-
-            console.log(rows1);
-            console.log(rows2);
-            console.log(JSON.stringify(rows1 + rows2));
-
-            var concatTab = rows1.concat(rows2)
-
-            res.send(rows1 + [] + rows2);
+                    this.c =  JSON.parse(JSON.stringify([rows, rows2]));
+                    //console.log(this.c);
+                    console.log(this.c[0][0].idProjet);
+                    res.send(this.c);
                 }
             });
-          }
+        }
     });
+
+    // var a;
+    // var b;
+    // var c;
+
+    // Jalon.ObtNbMaxJalonsProjets(function(err,rows1){
+    //       if(err)
+    //          res.send(err);
+    //     else
+    //       {
+
+    //          //res.send(rows, rows);
+    //          //console.log(rows);
+    //          //this.nbMaxJP = rows[0].jalonProjet;
+    //          //console.log(this.a);
+
+    //         Groupe.ObtTabNote(function(err,rows2)
+    //         {
+    //             if(err)
+    //                 res.send(err);
+    //             else 
+    //             {
+    //                 // res.send([rows] + [rows2]);
+    //                 // this.dataGroup = rows;
+    //                 //console.log(this.b);
+
+    //         console.log(rows1);
+    //         console.log(rows2);
+    //         console.log(JSON.stringify(rows1 + rows2));
+
+    //         var concatTab = rows1.concat(rows2)
+
+    //         res.send(rows1 + [] + rows2);
+    //             }
+    //         });
+    //       }
+    // });
 
     // var dataTab;
     // var nbMaxJP;
