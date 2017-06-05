@@ -7,7 +7,7 @@ router.get('/:id?',function(req,res,next)
 {
     if(req.params.id)
     {
-        Jalon.ObtJalonId(req.params.id,function(err,rows)
+        Jalon.ObtJalonById(req.params.id,function(err,rows)
         {
             if(err)
                 res.json(err);
