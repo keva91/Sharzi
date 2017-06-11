@@ -7,20 +7,23 @@
           <md-card-title>Sharzi</md-card-title>
           <md-card-subtitle>Connexion</md-card-subtitle>
         </md-card-header>
-        <md-card-content fxLayout="column"  >
-          <md-input-container>
-            <input mdInput #pseudo placeholder="pseudo" >
-          </md-input-container>
-          <md-input-container>
-            <input mdInput #pwd placeholder="mot de passe">
-          </md-input-container>
-          <button (click)="test()" md-button>Valider</button>
-          <div  fxLayout="row" fxLayoutAlign="center" >
-            <md-progress-bar *ngIf="loading" mode="indeterminate"></md-progress-bar>
-          </div>
-          {{mydata}}
-          
-        </md-card-content>
+        <form [formGroup]="loginForm" (ngSubmit)="test($event)" style="padding:20px 0;">
+          <md-card-content fxLayout="column"  >
+            
+              <md-input-container>
+                <input mdInput #pseudo formControlName="pseudo" placeholder="pseudo" >
+              </md-input-container>
+              <md-input-container>
+                <input mdInput #pwd formControlName="pwd" placeholder="mot de passe">
+              </md-input-container>
+              <button type="submit"  md-button>Valider</button>
+              <div  fxLayout="row" fxLayoutAlign="center" >
+                <md-progress-bar *ngIf="loading" mode="indeterminate"></md-progress-bar>
+              </div>
+            {{mydata}}
+
+          </md-card-content>
+        </form>
 
         
         
