@@ -22,13 +22,12 @@ var Jalon_Projet={
          return db.query("select * from Jalon_Projet where idProjet=?",[id],callback);
     },
 
-    ObtNbMaxJalon_Projets:function(callback)
-    {
-         return db.query("SELECT MAX(Jalon_Projet) AS Jalon_Projet FROM (SELECT Count(*) AS Jalon_Projet " 
-                  + "FROM Jalon_Projet j inner join projet p ON j.idProjet = p.idP group by p.idP "
-                  + ")Jalon_Projet;", callback);
-    },
-    
+    ObtNbMaxJalons_Projet:function(callback)
+     {
+         return db.query("SELECT MAX(JProjet) AS JProjet FROM (select count(*) as JProjet "
+                + "from Jalon_Projet group by idProjet)JProjet;", callback);
+     },
+  
     ajouterJalon_Projet:function(Jalon_Projet,callback)
     {
          return db.query("Insert into Jalon_Projets_Projet values(?,?,?,?)",
