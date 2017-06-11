@@ -2,11 +2,16 @@ var db=require('../dbconnection');
 
 var Projet={
    
-    ObtProjetById:function(id,callback)
+    ObtProjetById:function(id, callback)
     {
-        return db.query("select idP, idNoteP from Projet where idP=?",[id],callback);
+        return db.query("select idP, NoteP from Projet where idP=?",id, callback);
     },
     
+    ObtNoteProjet:function(callback)
+    {
+        return db.query("select idP, NoteP from Projet",callback);
+    },
+
     ObtTsProjets:function(callback)
     {
         return db.query("Select * from Projet",callback);
