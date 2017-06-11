@@ -3,6 +3,22 @@ var express = require('express');
 var router = express.Router();
 var Projet=require('../models/Projet');
 	
+app.get('/tdb',function(req,res,next)
+{
+    Projet.ObtTsProjets(function(err,rows)
+    {
+       if(err)
+       {
+           res.send(err);
+       } 
+       else
+       {
+           res.send(rows);
+       }
+    });
+});
+
+
 router.get('/:id?',function(req,res,next)
 {
     if(req.params.id)

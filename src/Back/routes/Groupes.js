@@ -3,71 +3,190 @@ var express = require('express');
 var router = express.Router();
 var app = require('../server')
 var Groupe =require('../models/Groupe');
-var Jalon = require('../models/Jalon');
+var Jalon_Projet = require('../models/Jalon_Projet');
 var Projet = require('../models/Projet'); 
 var Note = require('../models/Note'); 
 
 app.get('/note',function(req,res,next)
-{
-    var c;
-
-    Groupe.ObtTsGroupes(function(err,rows)
-    {
-        if(err)
-            res.send(err);
-        else 
-        {
-            Projet.ObtTsProjets(function(err,rows2)
-            {
-                if(err)
-                    res.send(err);
-                else 
-                {
-                    this.c =  JSON.parse(JSON.stringify([rows, rows2]));
-                    //console.log(this.c);
-                    console.log(this.c[0][0].idProjet);
-                    res.send(this.c);
-                }
-            });
-        }
+{ 
+    var groupe;
+    var projet;
+    
+    Groupe.ObtTsGroupes(function(err1,rows1)
+    { 	
+        //  console.log("Resultats Groupes : ");
+        //   console.log(rows1);
+        //   console.log("---------------------------------");
+        groupe = rows1;
     });
 
-    // var a;
-    // var b;
+    Projet.ObtNoteProjet(function(err2,rows2)
+    { 	
+        //  console.log("Resultats Projets : ");
+        //  console.log(rows2);
+        //  console.log("---------------------------------");
+        projet = rows2;
+    });
+
+    setTimeout(function()
+    {
+        for (r1 in groupe)
+        {
+            for(r2 in projet)
+            {
+                if(groupe[r1].idProjet == projet[r2].idP)
+                {
+                    groupe[r1] = JSON.stringify(groupe[r1]) + JSON.stringify(projet[r2]);
+                    
+                    while(groupe[r1].indexOf("{")!=-1)
+                    {
+                        if(groupe[r1].indexOf("{")!=1)
+                        {
+                            console.log("ici");
+                            groupe[r1] = groupe[r1].replace("{","");
+                        }
+                    }
+                    while(groupe[r1].indexOf("}")!=-1)
+                    {
+                        if(groupe[r1].indexOf("}")!=(JSON.stringify(groupe[r1])+JSON.stringify(projet[r2])).length)
+                        {
+                            console.log("là");
+                            groupe[r1] = groupe[r1].replace("}","");
+                        }
+                    }                     
+                }
+            }
+        }
+        
+
+
+        console.log(groupe);
+        console.log("--");
+
+
+        // console.log("Résultat Concaténé : ");
+        // console.log(data);
+        // console.log("---------------------------------");
+
+     }, 1000);
+  
+        // for(r in rows2)
+        // {
+        //      Projet.ObtProjetById(rows2[r].idProjet, function(err, rows3)
+            //  {
+
+            //     //  console.log(rows2[r].idProjet);
+            //     console.log(rows2[r].idProjet)
+
+            //     //  this.groupe += JSON.parse(JSON.stringify(rows2[r], rows10[0].idNoteP));
+
+            //     //  console.log("Resultat après insertion projet :")
+            //     //  console.log(this.groupe);
+            //     //  console.log("---------------------------------");
+            // });
+        // }
+        
+    // });
+});
+
+    // Jalon_Projet.ObtNbMaxJalons_Projet(function(err1,rows1){
+    //       if(err1)
+    //          res.send(err1);
+    //       else
+    //       {
+	// 		 console.log(rows1);
+    //          Groupe.ObtTsGroupes(function(err2,rows2)
+    //          {
+    //              if(err2)
+    //                  res.send(err2);
+    //              else
+    //              {
+	// 				console.log(rows2);
+	// 				for(r in rows2)
+    //                 {
+
+    // 					Projet.ObtProjetById(rows2[r].idProjet,function(err3,rows3)
+    // 					{
+    //                         console.log(r);
+
+    //                         console.log(rows2[r].idProjet)
+    //                         console.log("A");
+    //                         console.log(rows3);
+						
+	// 						if(err3)
+	// 							res.send(err3);
+	// 						else
+	// 						{
+	// 							console.log(rows3);
+	// 							this.dataGroup = row3;
+	// 						}
+
+	// 				    });
+    //                 }
+    //              }
+    //          });
+    //       }
+    // });
+
     // var c;
 
-    // Jalon.ObtNbMaxJalonsProjets(function(err,rows1){
-    //       if(err)
-    //          res.send(err);
-    //     else
-    //       {
-
-    //          //res.send(rows, rows);
-    //          //console.log(rows);
-    //          //this.nbMaxJP = rows[0].jalonProjet;
-    //          //console.log(this.a);
-
-    //         Groupe.ObtTabNote(function(err,rows2)
+    // Groupe.ObtTsGroupes(function(err,rows)
+    // {
+    //     if(err)
+    //         res.send(err);
+    //     else 
+    //     {
+    //         Projet.ObtTsProjets(function(err,rows2)
     //         {
     //             if(err)
     //                 res.send(err);
     //             else 
     //             {
-    //                 // res.send([rows] + [rows2]);
-    //                 // this.dataGroup = rows;
-    //                 //console.log(this.b);
-
-    //         console.log(rows1);
-    //         console.log(rows2);
-    //         console.log(JSON.stringify(rows1 + rows2));
-
-    //         var concatTab = rows1.concat(rows2)
-
-    //         res.send(rows1 + [] + rows2);
+    //                 this.c =  JSON.parse(JSON.stringify([rows, rows2]));
+    //                 //console.log(this.c);
+    //                 console.log(this.c[0][0].idProjet);
+    //                 res.send(this.c);
     //             }
     //         });
-    //       }
+    //     }
     // });
+
+    //  var a;
+    //  var b;
+    //  var c;
+
+    //  Jalon.ObtNbMaxJalonsProjets(function(err,rows1){
+    //        if(err)
+    //           res.send(err);
+    //      else
+    //        {
+
+    //           //res.send(rows, rows);
+    //           //console.log(rows);
+    //           //this.nbMaxJP = rows[0].jalonProjet;
+    //           //console.log(this.a);
+
+    //          Groupe.ObtTabNote(function(err,rows2)
+    //          {
+    //              if(err)
+    //                  res.send(err);
+    //              else 
+    //              {
+    //                  // res.send([rows] + [rows2]);
+    //                  // this.dataGroup = rows;
+    //                  //console.log(this.b);
+
+    //          console.log(rows1);
+    //          console.log(rows2);
+    //          console.log(JSON.stringify(rows1 + rows2));
+
+    //          var concatTab = rows1.concat(rows2)
+
+    //          res.send(rows1 + [] + rows2);
+    //              }
+    //          });
+    //        }
+    //  });
 
     // var dataTab;
     // var nbMaxJP;
@@ -75,88 +194,88 @@ app.get('/note',function(req,res,next)
     // var dataProjet;
     // var dataJalon;
 
-    // Jalon.ObtNbMaxJalonsProjets(function(err1,rows1){
-    //      if(err1)
-    //         res.send(err1);
-    //      else
-    //      {
-    //         //res.send(rows)
-    //         //console.log(rows);
-    //         //this.nbMaxJP = rows;
-    //         //console.log(this.nbMaxJP);
+    //  Jalon.ObtNbMaxJalonsProjets(function(err1,rows1){
+    //       if(err1)
+    //          res.send(err1);
+    //       else
+    //       {
+    //          //res.send(rows)
+    //          //console.log(rows);
+    //          //this.nbMaxJP = rows;
+    //          //console.log(this.nbMaxJP);
 
-    //         Groupe.ObtTsGroupes(function(err2,rows2)
-    //         {
-    //             if(err2)
-    //                 res.send(err2);
-    //             else
-    //             {
-    //                 for(r in rows2)
-    //                 {
-    //                     this.dataTab += row1 + rows2;
-    //                 }
-    //                 console.log(this.dataTab);
-    //                 // this.dataGroup
-    //                 // console.log(this.dataGroup);
+    //          Groupe.ObtTsGroupes(function(err2,rows2)
+    //          {
+    //              if(err2)
+    //                  res.send(err2);
+    //              else
+    //              {
+    //                  for(r in rows2)
+    //                  {
+    //                      this.dataTab += row1 + rows2;
+    //                  }
+    //                  console.log(this.dataTab);
+    //                  // this.dataGroup
+    //                  // console.log(this.dataGroup);
                    
-    //                 // for(r in this.dataGroup)
-    //                 // {
-    //                 //     this.dataGroup += this.nbMaxJP + this.dataGroup[r];
-    //                 // }
+    //                  // for(r in this.dataGroup)
+    //                  // {
+    //                  //     this.dataGroup += this.nbMaxJP + this.dataGroup[r];
+    //                  // }
                     
-    //                 // console.log(this.dataGroup);
+    //                  // console.log(this.dataGroup);
 
-    //                 res.send(this.dataTab);  
-    //             }
+    //                  res.send(this.dataTab);  
+    //              }
             
-                // while(dataGroup.next())
-                // { 
-                //     Projet.ObtProjetById(dataGroup[1],function(err,rows)
-                //     {
-                //         if(err)
-                //             res.json(err);
-                //         else
-                //         {
-                //             this.dataProjet= rows;
-                //             console.log(this.dataProjet);
-                //         }    
+    //             // while(dataGroup.next())
+    //             // { 
+    //             //     Projet.ObtProjetById(dataGroup[1],function(err,rows)
+    //             //     {
+    //             //         if(err)
+    //             //             res.json(err);
+    //             //         else
+    //             //         {
+    //             //             this.dataProjet= rows;
+    //             //             console.log(this.dataProjet);
+    //             //         }    
 
-                //         Note.ObtNoteId(dataProjet[1], function(err, rows)
-                //         {
-                //             if(err)
-                //                 res.json(err);
-                //             else
-                //             {
-                //                 this.dataProjet += rows;
-                //                 console.log(this.dataProjet);
-                //             }
-                //         });
+    //             //         Note.ObtNoteId(dataProjet[1], function(err, rows)
+    //             //         {
+    //             //             if(err)
+    //             //                 res.json(err);
+    //             //             else
+    //             //             {
+    //             //                 this.dataProjet += rows;
+    //             //                 console.log(this.dataProjet);
+    //             //             }
+    //             //         });
 
-                //         Jalon.ObtJalonParIdProjet(dataProjet[0],function(err,rows)
-                //         {
-                //             if(err)
-                //                 res.json(err);
-                //             else
-                //             {
-                //                 while (rows)
-                //                 {
-                //                     this.dataJalon += rows;
-                //                 }
-                //                 console.log(this.dataJalon);
-                //             }
-                //         });
-                //         this.dataProjet += this.dataJalon;
-                //     });
-                //     this.dataGroup += this.dataProjet;
-                // }
-                // this.dataTab += this.dataGroup;
-                // console.log(this.dataTab);
-                //res.send(dataTab);
-                //console.log(this.dataGroup);
-    //         });
-    //    }
-    // });
-});
+    //             //         Jalon.ObtJalonParIdProjet(dataProjet[0],function(err,rows)
+    //             //         {
+    //             //             if(err)
+    //             //                 res.json(err);
+    //             //             else
+    //             //             {
+    //             //                 while (rows)
+    //             //                 {
+    //             //                     this.dataJalon += rows;
+    //             //                 }
+    //             //                 console.log(this.dataJalon);
+    //             //             }
+    //             //         });
+    //             //         this.dataProjet += this.dataJalon;
+    //             //     });
+    //             //     this.dataGroup += this.dataProjet;
+    //             // }
+    //             // this.dataTab += this.dataGroup;
+    //             // console.log(this.dataTab);
+    //             //res.send(dataTab);
+    //             //console.log(this.dataGroup);
+    // //         });
+    // //    }
+    // // });
+// });
 module.exports=Groupe;
     
 
