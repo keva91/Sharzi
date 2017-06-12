@@ -11,6 +11,7 @@ app.get('/note',function(req,res,next)
 { 
     var groupe;
     var projet;
+    var jalon_projet;
     
     Groupe.ObtTsGroupes(function(err1,rows1)
     { 	
@@ -28,47 +29,56 @@ app.get('/note',function(req,res,next)
         projet = rows2;
     });
 
+    Jalon_Projet.ObtNoteDeTsJalon_Projets(function(err3,rows3)
+    {
+        //  console.log("Resultats Projets : ");
+        //  console.log(rows2);
+        //  console.log("---------------------------------");
+        jalon_projet = rows3;
+    });
+
+
+
     setTimeout(function()
     {
-        for (r1 in groupe)
-        {
-            for(r2 in projet)
-            {
-                if(groupe[r1].idProjet == projet[r2].idP)
-                {
-                    groupe[r1] = JSON.stringify(groupe[r1]) + JSON.stringify(projet[r2]);
-                    
-                    while(groupe[r1].indexOf("{")!=-1)
-                    {
-                        if(groupe[r1].indexOf("{")!=1)
-                        {
-                            console.log("ici");
-                            groupe[r1] = groupe[r1].replace("{","");
-                        }
-                    }
-                    while(groupe[r1].indexOf("}")!=-1)
-                    {
-                        if(groupe[r1].indexOf("}")!=(JSON.stringify(groupe[r1])+JSON.stringify(projet[r2])).length)
-                        {
-                            console.log("là");
-                            groupe[r1] = groupe[r1].replace("}","");
-                        }
-                    }                     
-                }
-            }
-        }
+         for (r1 in groupe)
+         {
+             for(r2 in projet)
+             {
+                 if(groupe[r1].idProjet == projet[r2].idP)
+                 {
+                     var a = JSON.stringify(groupe[r1]).substring(0,JSON.stringify(groupe[r1]).length-1) + ",";
+                     var b = JSON.stringify(projet[r2]).substring(1,JSON.stringify(projet[r2]).length);
+                     var c ="";
+                   
+                     for(r3 in jalon_projet)
+                     {
+                         if(projet[r2].idP == jalon_projet[r3].idProjet)
+                         {
+                             b = JSON.stringify(projet[r2]).substring(1,JSON.stringify(projet[r2]).length-1) + ",";
+                             //c += JSON.stringify(jalon_projet[r3]).substring(1,JSON.stringify(jalon_projet[r3]).length-1) +",";
+                             c = JSON.stringify(jalon_projet[r3]).substring(1,21) + r3 
+                                 + JSON.stringify(jalon_projet[r3]).substring(21,JSON.stringify(jalon_projet[r3]).length-1) + ",";
+                         }
+
+                     }
+                     abc = a + b + c.substring(0,c.length-1) + " }";
+                     abc = JSON.parse(abc);
+                     console.log(abc);
+                     groupe[r1] = abc;
+                 }
+             }
+         }
         
+        groupe = JSON.parse(JSON.stringify(groupe));
+         //console.log(groupe);
+         //res.send(groupe);
 
+         // console.log("Résultat Concaténé : ");
+         // console.log(data);
+         // console.log("---------------------------------");
 
-        console.log(groupe);
-        console.log("--");
-
-
-        // console.log("Résultat Concaténé : ");
-        // console.log(data);
-        // console.log("---------------------------------");
-
-     }, 1000);
+     }, 2000);
   
         // for(r in rows2)
         // {

@@ -36,7 +36,7 @@ export class EnsNoteComponent implements OnInit {
       .subscribe(data =>{
         console.log(data)
         //  return this.mydata = data[0].jalonProjet;
-        return this.mydata = data[0][0].idProjet;
+        return this.mydata = data[0];
      })
   }
 }

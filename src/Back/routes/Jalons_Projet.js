@@ -80,7 +80,7 @@ var Jalon_Projet=require('../models/Jalon_Projet');
 
 router.get('/tdb',function(req,res,next)
 {
-    Jalon_Projet.ObtJalon_Projets(req.params,function(err,rows)
+    Jalon_Projet.ObtJalon_Projet(req.params,function(err,rows)
         {
             if(err)
             res.json(err);

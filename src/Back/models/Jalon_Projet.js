@@ -27,6 +27,11 @@ var Jalon_Projet={
          return db.query("SELECT MAX(JProjet) AS JProjet FROM (select count(*) as JProjet "
                 + "from Jalon_Projet group by idProjet)JProjet;", callback);
      },
+      
+    ObtNoteDeTsJalon_Projets:function(callback)
+    {
+         return db.query("Select idProjet, noteJP from Jalon_Projet order by idProjet", callback);
+    },
   
     ajouterJalon_Projet:function(Jalon_Projet,callback)
     {
