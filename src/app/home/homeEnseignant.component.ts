@@ -16,9 +16,7 @@ export class HomeComponent implements OnInit {
           { title: 'Liste', content: "Liste des projets"}
         ]
 
-  test = function(){
-    console.log("test")
-  }
+
 
   ngOnInit() {
     

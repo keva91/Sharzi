@@ -9,6 +9,7 @@ import 'hammerjs';
 import { routing } from './app.router';
 import { Md2Module }  from 'md2';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgSemanticModule } from 'ng-semantic/ng-semantic';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/homeEnseignant.component';
@@ -16,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { EnsProjetComponent } from './ens-projet/ens-projet.component';
 import { EnsGroupeComponent } from './ens-groupe/ens-groupe.component';
 import { EnsNoteComponent } from './ens-note/ens-note.component';
+import { EnsJalonsComponent } from './ens-jalons/ens-jalons.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +26,15 @@ import { EnsNoteComponent } from './ens-note/ens-note.component';
     LoginComponent,
     EnsProjetComponent,
     EnsGroupeComponent,
-    EnsNoteComponent
+    EnsNoteComponent,
+    EnsJalonsComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,MaterialModule,FlexLayoutModule,routing,BrowserAnimationsModule,Md2Module.forRoot(),ReactiveFormsModule
+    HttpModule,MaterialModule,FlexLayoutModule,
+    routing,BrowserAnimationsModule,Md2Module.forRoot(),NgSemanticModule,
+    ReactiveFormsModule 
   ],
   providers: [],
   bootstrap: [AppComponent]

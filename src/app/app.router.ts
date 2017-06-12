@@ -5,6 +5,7 @@ import {LoginComponent} from './login/login.component'
 import {EnsProjetComponent} from './ens-projet/ens-projet.component'
 import {EnsGroupeComponent} from './ens-groupe/ens-groupe.component'
 import {EnsNoteComponent} from './ens-note/ens-note.component'
+import {EnsJalonsComponent} from './ens-jalons/ens-jalons.component'
 
 import { AppComponent } from './app.component';
 
@@ -14,9 +15,10 @@ export const router: Routes = [
     { path: 'home', component: HomeComponent,
         children: [
       { path: '',redirectTo: 'projet', pathMatch: 'full' },
-      { path: 'projet', component: EnsProjetComponent },
-      { path: 'groupe', component: EnsGroupeComponent },
-      { path: 'note', component: EnsNoteComponent }
+      { path: 'projets', component: EnsProjetComponent },
+      { path: 'groupes', component: EnsGroupeComponent },
+      { path: 'notes', component: EnsNoteComponent },
+      { path: 'jalons', component: EnsJalonsComponent }
     ]},
    
    
