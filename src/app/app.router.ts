@@ -1,6 +1,7 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from './home/homeEnseignant.component';
+import {HomeEnseignantComponent} from './home-enseignant/homeEnseignant.component';
+import {HomeEtudiantComponent} from './home-etudiant/home-etudiant.component';
 import {LoginComponent} from './login/login.component'
 import {EnsProjetComponent} from './ens-projet/ens-projet.component'
 import {EnsGroupeComponent} from './ens-groupe/ens-groupe.component'
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
 export const router: Routes = [
     { path: '', redirectTo: '/login', pathMatch: 'full'},
     { path: 'login', component: LoginComponent},
-    { path: 'home', component: HomeComponent,
+    { path: 'homeEnseignant', component: HomeEnseignantComponent,
         children: [
       { path: '',redirectTo: 'projet', pathMatch: 'full' },
       { path: 'projets', component: EnsProjetComponent },
@@ -20,6 +21,7 @@ export const router: Routes = [
       { path: 'notes', component: EnsNoteComponent },
       { path: 'jalons', component: EnsJalonsComponent }
     ]},
+    { path: 'homeEtudiant', component: HomeEtudiantComponent}
    
    
     

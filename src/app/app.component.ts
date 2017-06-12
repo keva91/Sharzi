@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {HomeComponent} from './home/homeEnseignant.component'
+import {HomeEnseignantComponent} from './home-enseignant/homeEnseignant.component'
 import { routing } from './app.router';
 
 @Component({
