@@ -11,7 +11,6 @@ export class LoginComponent implements OnInit {
 
 
   loading = false;
-
   mydata;
 
   constructor(
@@ -20,14 +19,11 @@ export class LoginComponent implements OnInit {
   ){
   }
 
-
-
   ngOnInit() {
+    return this.testsuivi();
   }
 
-
-
-  test(){
+  testsuivi(){
     this.loading = true;
     setTimeout(() => {
       console.log("yo timeout")
@@ -35,7 +31,7 @@ export class LoginComponent implements OnInit {
        let headers = new Headers();
        this.http.get('http://localhost:3000/tdb').map(res => res.json()).subscribe(data =>{
          console.log(data)
-         this.mydata = data[0].nom;
+         return this.mydata = data;
        })
     }, 2000);
    
