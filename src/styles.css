@@ -6,3 +6,7 @@ body{
 }
 .material-icons.md-light { color:#777777; }
 .material-icons.md-lightblue { color:rgba(30, 109, 210, 0.73); }
+
+.snackbarCustom{
+    background-color:  red!important;
+}

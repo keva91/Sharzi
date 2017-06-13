@@ -15,7 +15,7 @@ export const router: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'homeEnseignant', component: HomeEnseignantComponent,
         children: [
-      { path: '',redirectTo: 'projet', pathMatch: 'full' },
+      { path: '',redirectTo: 'projets', pathMatch: 'full' },
       { path: 'projets', component: EnsProjetComponent },
       { path: 'groupes', component: EnsGroupeComponent },
       { path: 'notes', component: EnsNoteComponent },

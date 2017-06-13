@@ -29,11 +29,24 @@ export class EnsProjetComponent implements OnInit {
   ngOnInit() {
     
   }
-  addTab(){
+
+  addProjet(){
     if(!(this.tabs.length > 1) ){
-      this.tabs.push({ title: 'Creation Projet', type: 'creation'});
+      this.tabs.push({ title: 'Creation Projet', type: 'creationProjet'});
       this.selectedTab = 1;
       }    
+  }
+
+  addJalon(){
+    if(!(this.tabs.length > 1) ){
+      this.tabs.push({ title: 'Creation Jalon', type: 'creationJalon'});
+      this.selectedTab = 1;
+      }    
+  }
+
+  cancel(){
+    console.log(this.tabs.length)
+    this.tabs.splice(1, 1,);
   }
 
   public projetForm = this.fbP.group({

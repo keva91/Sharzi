@@ -18,6 +18,7 @@ import { EnsProjetComponent } from './ens-projet/ens-projet.component';
 import { EnsGroupeComponent } from './ens-groupe/ens-groupe.component';
 import { EnsNoteComponent } from './ens-note/ens-note.component';
 import { EnsJalonsComponent } from './ens-jalons/ens-jalons.component';
+import { EnsJalonsCreateComponent } from './ens-jalons/ens-jalons-create/ens-jalons-create.component';
 import { HomeEtudiantComponent } from './home-etudiant/home-etudiant.component';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { HomeEtudiantComponent } from './home-etudiant/home-etudiant.component';
     EnsGroupeComponent,
     EnsNoteComponent,
     EnsJalonsComponent,
+    EnsJalonsCreateComponent,
     HomeEtudiantComponent
   ],
   imports: [

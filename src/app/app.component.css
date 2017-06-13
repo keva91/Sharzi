@@ -2,3 +2,6 @@ body{
     font-family: Roboto,"Helvetica Neue",sans-serif;
 }
 
+.snackbarCustom{
+    background-color:  red!important;
+}
