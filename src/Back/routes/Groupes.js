@@ -7,13 +7,86 @@ var Jalon_Projet = require('../models/Jalon_Projet');
 var Projet = require('../models/Projet'); 
 var Note = require('../models/Note'); 
 
-app.get('/note',function(req,res,next)
-{ 
+var async = require('async');
+
+app.get('/note',function(req,res,next){ 
+
     var groupe;
     var projet;
     var jalon_projet;
+    console.log('in route note')
+
+    async.parallel([
+        function(callback) {
+        
+            Groupe.ObtTsGroupes(function(err1,rows1){ 
+                if(rows1){
+                    console.log("Resultats Groupe  : ");
+                    console.log(rows1)
+                }else{
+                    console.log('empty Groupe ')
+                }
+                console.log("---------------------------------");
+                groupe = rows1;
+
+                return callback(err1, rows1);
+            });
+        },
+        function(callback) {
+            
+            Projet.ObtNoteProjet(function(err2,rows2){
+
+                if(rows2){
+                    console.log("Resultats Projets  : ");
+                    console.log(rows2)
+                }else{
+                    console.log('empty Projets ')
+                }
+                
+                projet = rows2;
+                return callback(err2, rows2);
+            });
+        },
+        function(callback) {
+            
+            Jalon_Projet.ObtNoteDeTsJalon_Projets(function(err3,rows3){
+                if(rows3){
+                    console.log("Resultats Projets jalon : ");
+                    console.log(rows3)
+                }else{
+                    console.log('empty projet jalon')
+                }
+                console.log("---------------------------------");
+                
+                jalon_projet = rows3;
+                return callback(err3, rows3);
+            });
+        }
+    ], function(error, callbackResults) {
+        if (error) {
+            //handle error
+            console.log('callback error');
+            console.log(error);
+        } else {
+            console.log("--------------result jalon_projet-------------------");
+            console.log(jalon_projet)
+
+            console.log("------------result projet-------------------");
+            console.log(projet)
+
+            console.log("--------------result groupe-------------------");
+            console.log(groupe)
+
+            console.log("--------------result callbackResults-------------------");
+            console.log(callbackResults[0]); // rows1
+            console.log(callbackResults[1]); // rows2
+            // use this data to send back to client etc.
+        }
+    });
+
+
     
-    Groupe.ObtTsGroupes(function(err1,rows1)
+   /* Groupe.ObtTsGroupes(function(err1,rows1)
     { 	
         //  console.log("Resultats Groupes : ");
         //   console.log(rows1);
@@ -35,11 +108,11 @@ app.get('/note',function(req,res,next)
         //  console.log(rows2);
         //  console.log("---------------------------------");
         jalon_projet = rows3;
-    });
+    });*/
 
 
 
-    setTimeout(function()
+    /*setTimeout(function()
     {
          for (r1 in groupe)
          {
@@ -78,7 +151,7 @@ app.get('/note',function(req,res,next)
          // console.log(data);
          // console.log("---------------------------------");
 
-     }, 2000);
+     }, 2000);*/
   
         // for(r in rows2)
         // {

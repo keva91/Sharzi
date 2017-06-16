@@ -30,7 +30,7 @@ var Jalon_Projet={
       
     ObtNoteDeTsJalon_Projets:function(callback)
     {
-         return db.query("Select idProjet, noteJP from Jalon_Projet order by idProjet", callback);
+         return db.query("Select idProjetJP, noteJP from Jalon_Projet order by idProjetJP", callback);
     },
   
     ajouterJalon_Projet:function(Jalon_Projet,callback)

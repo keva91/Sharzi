@@ -14,7 +14,7 @@ var Groupe={
 
     ObtTsGroupes:function(callback)
     {
-        return db.query("Select idG, idProjet from Groupe order by idG", callback);
+        return db.query("Select idG, idProjetG from Groupe order by idG", callback);
     },
 
     ajouterGroupe:function(Groupe, callback)
