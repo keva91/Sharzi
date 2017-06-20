@@ -1,12 +1,12 @@
 
 var express = require('express');
-var router = express.Router();
+var app = require('../server')
+var bodyParser = require('body-parser')
 var Projet=require('../models/Projet');
+
 	
-app.get('/tdb',function(req,res,next)
-{
-    Projet.ObtTsProjets(function(err,rows)
-    {
+app.get('/tdb',function(req,res,next){
+    Projet.ObtTsProjets(function(err,rows){
        if(err)
        {
            res.send(err);
@@ -19,7 +19,7 @@ app.get('/tdb',function(req,res,next)
 });
 
 
-router.get('/:id?',function(req,res,next)
+app.get('/projet/:id?',function(req,res,next)
 {
     if(req.params.id)
     {
@@ -33,7 +33,7 @@ router.get('/:id?',function(req,res,next)
     }
     else
     {
-        Projet.ObtTtProjet(function(err,rows)
+        Projet.ObtTsProjets(function(err,rows)
         {
             if(err)
             res.json(err);
@@ -44,21 +44,32 @@ router.get('/:id?',function(req,res,next)
 });
 
 
-router.post('/',function(req,res,next)
+app.post('/projet/:id?',function(req,res,next)
 {
-    Projet.ajouterProjet(req.body,function(err,count)
-    {
-        if(err)
-            res.json(err);
-        else
-            res.json(req.body);//or return count for 1 &amp;amp;amp; 0
-    });
+    if(req.params.id){
+        Projet.modifierProjet(function(err,rows){
+            if(err)
+                res.json(err); 
+            else
+                res.json(rows);
+        });
 
-    Projet.modifierProjet(function(err,rows)
-    {
-        if(err)
-            res.json(err); 
-        else
-            res.json(rows);
-    });
+    }else{
+        console.log(req.body)
+        Projet.ajouterProjet(req.body,function(err,count){
+            if(err){
+                console.log('error')
+                res.json(err);
+            }else{
+                res.json(req.body);//or return count for 1 &amp;amp;amp; 0
+            }
+                
+                
+            
+                
+        });
+
+    }
+    
+
 });

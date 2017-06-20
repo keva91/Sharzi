@@ -34,31 +34,8 @@
               
             </div>
             <div *ngSwitchCase="'creationProjet'">
-              
-             <form [formGroup]="projetForm" (ngSubmit)="createProjet($event)" style="padding:20px 0;">
 
-                <div fxLayout="row" fxLayoutAlign="start center" >
-                  <md-input-container  fxFlex="20">
-                    <input formControlName="name" mdInput placeholder="Nom du projet" >
-                  </md-input-container>
-
-                  <md2-datepicker formControlName="date" fxFlex="20" [(ngModel)]="date" placeholder="date de fin du projet" style="margin:0 0 26px 30px;"></md2-datepicker>
-
-                </div>
-                <div  fxLayout="row"  >
-                  <md-input-container  fxFlex="20" >
-                      <textarea formControlName="desc" mdInput placeholder="Description du projet"></textarea>
-                  </md-input-container>
-                </div>
-
-                <div fxLayout="row" fxLayoutAlign="end">
-                  
-                    <button (click)="cancel()"  md-button>Annuler <i class="material-icons md-light ">clear</i></button>
-                
-                    <button  type="submit" md-button>Valider <i class="material-icons md-light ">done</i></button>
-                  
-                </div>
-              </form>
+              <app-ens-projet-create [test]="callbacks"></app-ens-projet-create>
 
             </div>
             <div *ngSwitchCase="'creationJalon'">

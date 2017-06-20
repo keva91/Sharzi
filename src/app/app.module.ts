@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { HomeEnseignantComponent } from './home-enseignant/homeEnseignant.component';
 import { LoginComponent } from './login/login.component';
 import { EnsProjetComponent } from './ens-projet/ens-projet.component';
+import { EnsProjetCreateComponent } from './ens-projet/ens-projet-create/ens-projet-create.component';
 import { EnsGroupeComponent } from './ens-groupe/ens-groupe.component';
 import { EnsNoteComponent } from './ens-note/ens-note.component';
 import { EnsJalonsComponent } from './ens-jalons/ens-jalons.component';
@@ -31,7 +32,8 @@ import { HomeEtudiantComponent } from './home-etudiant/home-etudiant.component';
     EnsNoteComponent,
     EnsJalonsComponent,
     EnsJalonsCreateComponent,
-    HomeEtudiantComponent
+    HomeEtudiantComponent,
+    EnsProjetCreateComponent
   ],
   imports: [
     BrowserModule,

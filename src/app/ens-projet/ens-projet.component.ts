@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import {Http, Headers} from '@angular/http'
 
 @Component({
   selector: 'app-ens-projet',
@@ -8,7 +9,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class EnsProjetComponent implements OnInit {
 
-  constructor(public fbP: FormBuilder) { }
+  constructor(public fbP: FormBuilder,private http: Http) { }
 
   selectedTab = 0;
 
@@ -27,8 +28,24 @@ export class EnsProjetComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getProjets();
     
   }
+
+
+  getProjets(){
+    let headers = new Headers();
+    this.http.get('http://localhost:3000/projet').map(res => res.json()).subscribe(data =>{
+      console.log(data);
+
+    })
+
+  }
+
+  callbacks =  { 
+    cancel : this.cancel.bind(this)
+  }
+    
 
   addProjet(){
     if(!(this.tabs.length > 1) ){
