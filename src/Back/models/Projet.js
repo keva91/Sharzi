@@ -20,9 +20,9 @@ var Projet={
     ajouterProjet:function(Projet,callback)
     {
         console.log("inside service");
-        console.log(Projet.idP);
-        return db.query("Insert into Projet values(?,?,?,?,?)",
-        [Projet.nomP, Projet.descrP, Projet.date_finP, Projet.date_creationP, Projet.idNoteJ],callback);
+        console.log(Projet);
+        return db.query("Insert into Projet values(?,?,?,?,?,?)",
+        [null,Projet.name, Projet.desc, Projet.date, Projet.dateStart,null],callback);
     },
 
     modifierProjet:function(id,Projet,callback)
