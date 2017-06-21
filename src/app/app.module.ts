@@ -20,6 +20,7 @@ import { EnsNoteComponent } from './ens-note/ens-note.component';
 import { EnsJalonsComponent } from './ens-jalons/ens-jalons.component';
 import { EnsJalonsCreateComponent } from './ens-jalons/ens-jalons-create/ens-jalons-create.component';
 import { HomeEtudiantComponent } from './home-etudiant/home-etudiant.component';
+import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HomeEtudiantComponent } from './home-etudiant/home-etudiant.component';
     EnsNoteComponent,
     EnsJalonsComponent,
     EnsJalonsCreateComponent,
-    HomeEtudiantComponent
+    HomeEtudiantComponent,
+    TdbComponent
   ],
   imports: [
     BrowserModule,

@@ -4,7 +4,7 @@ import { TdbComponent } from './ens-tdb.component';
 
 describe('LoginComponent', () => {
   let component: TdbComponent;
-  let fixture: ComponentFixture<LoginComponent>;
+  let fixture: ComponentFixture<TdbComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
