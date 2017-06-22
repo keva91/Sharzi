@@ -56,12 +56,13 @@ app.post('/projet/:id?',function(req,res,next)
 
     }else{
         console.log(req.body)
-        Projet.ajouterProjet(req.body,function(err,count){
+        Projet.ajouterProjet(req.body,function(err,rows){
             if(err){
                 console.log('error')
                 res.json(err);
             }else{
-                res.json(req.body);//or return count for 1 &amp;amp;amp; 0
+                
+                res.json(rows.insertId);//or return count for 1 &amp;amp;amp; 0
             }
                 
                 

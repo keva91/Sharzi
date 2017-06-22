@@ -48,12 +48,27 @@ router.get('/:id?',function(req,res,next)
 
 router.post('/',function(req,res,next)
 {
-    Jalon.ajouterJalon(req.body,function(err,count)
+    Jalon.ajouterJalon(req.body,function(err,row)
     {
-        if(err)
-            res.json(err);
-        else
-            res.json(req.body);
+        if(err){
+             res.json(err);
+        }else{
+            res.json(row.insertId);
+        }
+
+
+        Jalon_Projet.ajouterJalon_Projet(req.body,function(err,count)
+        {
+            if(err){
+                res.json(err);
+            }else{
+                res.json(req.body);
+            }
+                
+        });
+                
+
+
     });
 
     Jalon.modifierJalon(function(err,rows)

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class EnsJalonsCreateComponent implements OnInit {
 
 constructor(public fbJ: FormBuilder) { }
+
+@Input() callback ;
 
   selectedTab = 0;
 
@@ -26,20 +28,23 @@ constructor(public fbJ: FormBuilder) { }
   ngOnInit() {
     
   }
+  onMultiple(ev){
+    console.log(ev)
+
+  }
 
 
 
   public jalonsForm = this.fbJ.group({
-    name: ["", Validators.required],
-    date: ["", Validators.required],
-    listProjets: ["", Validators.required],
+    name: [null, Validators.required],
+    date: [null, Validators.required],
+    list: [null,Validators.required],
   });
  
   createJalon(event) {
     console.log(event);
     console.log(this.jalonsForm.value);
     
-    this.selectedTab = 0;
   
   }
 
