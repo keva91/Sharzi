@@ -29,7 +29,7 @@ constructor(public fbJ: FormBuilder) { }
 
   tabs = [
           { title: 'Liste Jalons', type: "list"}
-        ]
+  ]
 
 
 
@@ -47,7 +47,7 @@ constructor(public fbJ: FormBuilder) { }
   }
 
   cancel(){
-    console.log(this.tabs.length)
+    
     this.tabs.splice(1, 1,);
       
   }

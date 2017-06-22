@@ -35,11 +35,11 @@
             </div>
             <div *ngSwitchCase="'creationProjet'">
 
-              <app-ens-projet-create [test]="callbacks"></app-ens-projet-create>
+              <app-ens-projet-create [callback]="callbacksFunctions"></app-ens-projet-create>
 
             </div>
             <div *ngSwitchCase="'creationJalon'">
-              <app-ens-jalons-create></app-ens-jalons-create>
+              <app-ens-jalons-create [callback]="callbacksFunctions"></app-ens-jalons-create>
             </div>
 
 

@@ -23,12 +23,10 @@ export class EnsProjetComponent implements OnInit {
           { title: 'Liste Projets', type: "list"}
         ]
 
-  test = function(){
-    console.log("test")
-  }
+
 
   ngOnInit() {
-    this.getProjets();
+    //this.getProjets();
     
   }
 
@@ -42,7 +40,7 @@ export class EnsProjetComponent implements OnInit {
 
   }
 
-  callbacks =  { 
+  callbacksFunctions =  { 
     cancel : this.cancel.bind(this)
   }
     

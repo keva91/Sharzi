@@ -9,7 +9,7 @@ import {Http, Headers} from '@angular/http'
 })
 export class EnsProjetCreateComponent implements OnInit {
 
-  @Input() test ;
+  @Input() callback ;
 
   constructor(public fbP: FormBuilder,private http: Http) { }
 
@@ -19,19 +19,13 @@ export class EnsProjetCreateComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log(this.test)
-  
-    console.log(new Date().toISOString().substring(0, 10));
-    console.log(new Date(Date.now()).toLocaleString())
-    
+    console.log(this.callback)   
      
   }
 
 
 
-  /*cancel(){
-    this.test;
-  }*/
+
 
   public projetForm = this.fbP.group({
     name: ["", Validators.required],
