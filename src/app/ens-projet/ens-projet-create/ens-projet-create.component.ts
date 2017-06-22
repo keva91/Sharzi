@@ -9,7 +9,7 @@ import {Http, Headers} from '@angular/http'
 })
 export class EnsProjetCreateComponent implements OnInit {
 
-  @Input() callback ;
+  @Input() callback;
 
   constructor(public fbP: FormBuilder,private http: Http) { }
 

@@ -29,6 +29,7 @@ import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
     HomeEnseignantComponent,
     LoginComponent,
     EnsProjetComponent,
+    EnsProjetCreateComponent,
     EnsGroupeComponent,
     EnsNoteComponent,
     EnsJalonsComponent,
