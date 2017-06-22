@@ -29,9 +29,5 @@ module.exports = app;
 
 var etudiant = require('./routes/Etudiant')
 var groupes = require('./routes/Groupes')
-var login = require('./routes/Login')
-<<<<<<< HEAD
-var projet = require('./routes/Projets');
-=======
-var projets = require('./routes/Projets')
->>>>>>> origin/master
+var login = require('./routes/Login');
+var projets = require('./routes/Projets');

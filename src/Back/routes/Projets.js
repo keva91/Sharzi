@@ -1,7 +1,6 @@
 
 var express = require('express');
-var app = require('../server')
-<<<<<<< HEAD
+var app = require('../server');
 var Projet=require('../models/Projet');
 var Jalon_Projet = require('../models/Jalon_Projet');
 var Jalon = require('../models/Jalon');
@@ -12,14 +11,7 @@ app.get('/tdb',function(req,res,next)
 
     Projet.ObtTsProjets(function(err,rowsP)
     {
-=======
-var bodyParser = require('body-parser')
-var Projet=require('../models/Projet');
 
-	
-app.get('/tdb',function(req,res,next){
-    Projet.ObtTsProjets(function(err,rows){
->>>>>>> origin/master
        if(err)
        {
            res.send(err);
@@ -116,11 +108,7 @@ app.get('/tdb',function(req,res,next){
 });
 
 
-<<<<<<< HEAD
-app.get('/:id?',function(req,res,next)
-=======
 app.get('/projet/:id?',function(req,res,next)
->>>>>>> origin/master
 {
     if(req.params.id)
     {
@@ -144,12 +132,7 @@ app.get('/projet/:id?',function(req,res,next)
     }
 });
 
-
-<<<<<<< HEAD
-app.post('/',function(req,res,next)
-=======
 app.post('/projet/:id?',function(req,res,next)
->>>>>>> origin/master
 {
     if(req.params.id){
         Projet.modifierProjet(function(err,rows){

@@ -34,11 +34,7 @@ import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
     EnsJalonsComponent,
     EnsJalonsCreateComponent,
     HomeEtudiantComponent,
-<<<<<<< HEAD
     TdbComponent
-=======
-    EnsProjetCreateComponent
->>>>>>> origin/master
   ],
   imports: [
     BrowserModule,
