@@ -7,6 +7,7 @@ import {EnsProjetComponent} from './ens-projet/ens-projet.component'
 import {EnsGroupeComponent} from './ens-groupe/ens-groupe.component'
 import {EnsNoteComponent} from './ens-note/ens-note.component'
 import {EnsJalonsComponent} from './ens-jalons/ens-jalons.component'
+import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
 
 import { AppComponent } from './app.component';
 
@@ -19,7 +20,8 @@ export const router: Routes = [
       { path: 'projets', component: EnsProjetComponent },
       { path: 'groupes', component: EnsGroupeComponent },
       { path: 'notes', component: EnsNoteComponent },
-      { path: 'jalons', component: EnsJalonsComponent }
+      { path: 'jalons', component: EnsJalonsComponent },
+      { path: 'tdb', component: TdbComponent}
     ]},
     { path: 'homeEtudiant', component: HomeEtudiantComponent}
    

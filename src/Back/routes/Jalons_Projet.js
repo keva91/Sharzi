@@ -78,7 +78,7 @@ var express = require('express');
 var router = express.Router();
 var Jalon_Projet=require('../models/Jalon_Projet');
 
-router.get('/tdb',function(req,res,next)
+/*router.get('/tdb',function(req,res,next)
 {
     Jalon_Projet.ObtJalon_Projet(req.params,function(err,rows)
         {
@@ -87,7 +87,7 @@ router.get('/tdb',function(req,res,next)
             else
             res.json(rows);
         });
-});
+});*/
 router.get('/:id?',function(req,res,next)
 {
     if(req.params.id)

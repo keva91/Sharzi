@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var Jalon=require('../models/Jalon');
 	
-router.get('/tdb',function(req,res,next)
+/*router.get('/tdb',function(req,res,next)
 {
     Jalon.ObtTsJalons(function(err,rows)
         {
@@ -12,7 +12,7 @@ router.get('/tdb',function(req,res,next)
             else
             res.json(rows);
         });
-}); 
+});*/
 
 router.get('/:id?',function(req,res,next)
 {

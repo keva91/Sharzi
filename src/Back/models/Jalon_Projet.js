@@ -2,9 +2,9 @@ var db=require('../dbconnection');
 
 var Jalon_Projet={
 
-    ObtJalon_Projet:function(ids,callback)
+    ObtJalon_Projet:function(callback)
     {
-        return db.query("select * from Jalon_Projet where idProjet=? and idJalon=?",[idProjet, idJalon],callback);
+        return db.query("select * from Jalon_Projet",callback);
     },
 
     ObtJalon_ProjetById:function(id,callback)
