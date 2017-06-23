@@ -13,6 +13,8 @@ export class EnsProjetComponent implements OnInit {
 
   selectedTab = 0;
   listProjets  = [];
+  listJalons  = [];
+  projetSelected = null;
 
 
   tabs = [
@@ -34,7 +36,16 @@ export class EnsProjetComponent implements OnInit {
       this.listProjets = data;
 
     })
+  }
 
+  getJalonsFromProjet(projetId){
+    console.log(projetId)
+    let headers = new Headers();
+    this.http.get('http://localhost:3000/Jalon-Projet/projet/',projetId).map(res => res.json()).subscribe(data =>{
+      console.log(data);
+      this.listJalons = data;
+
+    })
   }
 
   callbacksFunctions =  { 
@@ -62,6 +73,15 @@ export class EnsProjetComponent implements OnInit {
       this.tabs.push({ title: 'Creation Jalon', type: 'creationJalon'});
       this.selectedTab = 1;
     }    
+  }
+
+  detailProjet(projet){
+    if(!(this.tabs.length > 1) ){
+      this.projetSelected = projet
+      this.getJalonsFromProjet(projet.idP);
+      this.tabs.push({ title: 'Detail Projet', type: 'detailProjet'});
+      this.selectedTab = 1;
+    } 
   }
 
 

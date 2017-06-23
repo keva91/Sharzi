@@ -7,6 +7,8 @@ body{
 .material-icons.md-light { color:#777777; }
 .material-icons.md-lightblue { color:rgba(30, 109, 210, 0.73); }
 
+.material-icons.md-darkblue { color:rgba(2, 48, 97, 0.71); }
+
 
 
 .snackbarError{
@@ -42,3 +44,14 @@ body{
 h3:first-child{
     margin: calc(2rem - .14285em) 0 1rem;
 }
+
+.menu_font{
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica;
+}
+
+.icon_menu{
+    margin: 0px 15px 0px 10px!important;
+    padding: 0px!important;
+}
+
+
