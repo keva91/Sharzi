@@ -1,0 +1,43 @@
+<div>
+          
+  
+<md-card class="example-card">
+  <md-card-header>
+    <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
+    <md-card-subtitle>Projet : </md-card-subtitle>
+    <md-card-title>{{projet.nomP}}</md-card-title>
+
+    <md-card-subtitle>Date : </md-card-subtitle>
+    <md-card-title>{{projet.date_finP  | date}}</md-card-title>
+    
+  </md-card-header>
+
+  <md-card-content>
+    <md-card-subtitle>Description : </md-card-subtitle>
+    <p>
+      {{projet.descrP}}
+    </p>
+
+    <p>
+      <md-nav-list>
+        <md-list-item *ngFor="let jalon of jalons" isRippleEnabled>
+          <div  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
+            <md-icon md-list-icon style="margin:10px" class="md-lightblue">description</md-icon>
+            <div>
+              <div md-line>{{jalon.idJalonJP}}</div>
+              <!--<div md-line>  date :  {{jalon.date_finJ | date}} </div>-->
+            </div>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-nav-list>
+    </p>
+  </md-card-content>
+  <md-card-actions>
+    <button (click)="callback.cancel()"  md-button>Annuler <i class="material-icons md-light ">undo</i></button>
+    <button md-button>SHARE</button>
+  </md-card-actions>
+</md-card>
+    
+
+</div>

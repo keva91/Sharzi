@@ -21,11 +21,16 @@
             
               <md-nav-list>
                 <md-list-item *ngFor="let projet of listProjets" isRippleEnabled>
-                  <div  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
+                  <div fxFill  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
                     <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
                     <div>
                       <div md-line>{{projet.nomP}}</div>
                       <div md-line> {{projet.date_finP | date}} </div>
+                    </div>
+                    <div fxFlex></div>
+                    <div fxLayout="row"  >
+                      <button  (click)="editProjet()" mdTooltip="Modifier Projet" mdTooltipPosition="before" md-button> <i class="material-icons md-light ">tune</i></button>
+                      <button  (click)="detailProjet(projet)" mdTooltip="Details Projet" mdTooltipPosition="after" md-button><i class="material-icons md-light ">remove_red_eye</i></button>
                     </div>
                   </div>
                   <md-divider></md-divider>
@@ -40,6 +45,10 @@
             </div>
             <div *ngSwitchCase="'creationJalon'">
               <app-ens-jalons-create [callback]="callbacksFunctions" [projets]="listProjets"  ></app-ens-jalons-create>
+            </div>
+
+            <div *ngSwitchCase="'detailProjet'">
+              <app-ens-projet-details [callback]="callbacksFunctions" [jalons]="listJalons" [projet]="projetSelected"  ></app-ens-projet-details >
             </div>
 
 

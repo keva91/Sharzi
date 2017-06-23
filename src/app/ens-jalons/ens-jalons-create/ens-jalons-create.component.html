@@ -14,7 +14,9 @@
         <div fxLayout="column">
           <md2-datepicker formControlName="date" fxFlex="20" [(ngModel)]="date" placeholder="date de fin du jalon" style="margin:0 0 26px 30px;" [ngClass]="{'datepicker_nomargin': submitted && !jalonsForm.controls['date'].valid }" ></md2-datepicker>
           <div *ngIf="submitted && !jalonsForm.controls['date'].valid " class="required_date">Date requise  </div>
-        </div>
+        </div>, 
+
+        
         
 
       </div>
