@@ -14,7 +14,7 @@ var Groupe={
 
     ObtTsGroupes:function(callback)
     {
-        return db.query("Select idG, idProjetG from Groupe order by idG", callback);
+        return db.query("Select idG, nomG, idProjetG from Groupe order by idG", callback);
     },
 
     ajouterGroupe:function(Groupe, callback)
@@ -37,8 +37,8 @@ var Groupe={
     ObtTabNote:function(callback)
     {
         var tab = db.query("select "
-                + "g.idG, g.nomG, g.idProjet, p.idNoteP, n.note as noteP, n2.note as noteJ1 "
-                + "from groupe g inner join projet p on g.idProjet=p.idP "
+                + "g.idG, g.nomG, g.idProjetG, p.idNoteP, n.note as noteP, n2.note as noteJ1 "
+                + "from groupe g inner join projet p on g.idProjetG=p.idP "
 	            + "inner join note n on p.idNoteP=n.idN "
                 + "inner join jalon j on j.idProjet=p.idP "
                 + "inner join note n2 on j.idNoteJ=n2.idN "

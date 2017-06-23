@@ -1,3 +1,20 @@
-<div >
-     {{mydata}}
+<div>
+    <table>
+        <tbody>
+            <tr>
+                <th>GROUPE</th>
+                <th *ngFor="let item of createRange(); let i of items"> JALON{{i}} </th>
+                <th>PROJET</th>
+            </tr>
+
+            <tr *ngFor="let mydata of mydata[1]">
+                <td>{{mydata.nomG}}</td>
+                <td *ngFor="let item of createRange(); let i of items"> {{mydata.noteJP}} </td>
+
+                <td>{{mydata.noteP}}</td>
+            </tr>
+         </tbody>
+    </table>
 </div>
+
+<!-- bouton export -->
