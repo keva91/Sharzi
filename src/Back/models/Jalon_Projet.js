@@ -33,10 +33,10 @@ var Jalon_Projet={
          return db.query("Select idProjetJP, noteJP from Jalon_Projet order by idProjetJP", callback);
     },
   
-    ajouterJalon_Projet:function(Jalon_Projet,callback)
+    ajouterJalon_Projet:function(data,callback)
     {
-         return db.query("Insert into Jalon_Projets_Projet values(?,?,?,?)",
-         [idProjet, Jalon_Projets_Projet.commentaireJP, Jalon_Projets_Projet.rapportAdr, Jalon_Projets_Projet.NoteJP],callback);
+         return db.query("Insert into Jalon_Projet (idJalonJP, idProjetJP) values ?",
+         [data],callback);
     },
 
     modifierJalon_Projet:function(id,Jalon_Projet,callback)

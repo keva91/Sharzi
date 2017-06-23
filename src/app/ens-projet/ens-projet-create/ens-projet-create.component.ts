@@ -1,6 +1,7 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import {Http, Headers} from '@angular/http'
+import {Http, Headers} from '@angular/http';
+import {MdSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-ens-projet-create',
@@ -11,7 +12,10 @@ export class EnsProjetCreateComponent implements OnInit {
 
   @Input() callback ;
 
-  constructor(public fbP: FormBuilder,private http: Http) { }
+  constructor(
+    public fbP: FormBuilder,
+    private http: Http,
+    public snackBar: MdSnackBar) { }
 
   selectedTab = 0;
 
@@ -41,6 +45,12 @@ export class EnsProjetCreateComponent implements OnInit {
     
     this.http.post('http://localhost:3000/projet',this.projetForm.value).map(res => res.json()).subscribe(data =>{
       console.log(data);
+      if(data){
+        this.snackBar.open('Projet enregistré !','', {
+              duration: 2500, extraClasses:['snackbarSuccess']
+        });
+        this.callback.cancel('yes');
+      }
 
     })
   
