@@ -4,33 +4,44 @@
     <form [formGroup]="jalonsForm" (ngSubmit)="createJalon($event)" style="padding:20px 0;">
 
       <div fxLayout="row" fxLayoutAlign="start center" >
-        <md-input-container  fxFlex="20">
+        <md-input-container  fxFlex="20" [ngClass]="{'has-error':!jalonsForm.controls['name'].valid}">
           <input formControlName="name" mdInput placeholder="Nom du jalon" >
+          <div *ngIf="submitted && !jalonsForm.controls['name'].valid " class="required_input">Nom requis  </div>
         </md-input-container>
+        
+        
 
-        <md2-datepicker formControlName="date" fxFlex="20" [(ngModel)]="date" placeholder="date de fin du jalon" style="margin:0 0 26px 30px;"></md2-datepicker>
+        <div fxLayout="column">
+          <md2-datepicker formControlName="date" fxFlex="20" [(ngModel)]="date" placeholder="date de fin du jalon" style="margin:0 0 26px 30px;" [ngClass]="{'datepicker_nomargin': submitted && !jalonsForm.controls['date'].valid }" ></md2-datepicker>
+          <div *ngIf="submitted && !jalonsForm.controls['date'].valid " class="required_date">Date requise  </div>
+        </div>
+        
 
       </div>
-      <div  fxLayout="row"  >
-        <md-input-container  fxFlex="20" >
-            <textarea  mdInput placeholder="Description du jalon"></textarea>
+
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <md-input-container  fxFlex="47" >
+          <textarea formControlName="desc" mdInput placeholder="Description du jalon"></textarea>
         </md-input-container>
       </div>
-      <div>
+    
+      <div style="margin:10px 0;">
         <sm-select 
           [options]="{direction: 'upward', transition: 'vertical flip'}"
-          
+          [control]="jalonsForm.controls.list"
+          (onChange)="onMultiple($event)"
           placeholder="Selectionner projets..." 
-          class="fluid search multiple"
-          >
-          <option *ngFor="let projet of projets">{{projet.nom}}</option>
+          class="fluid search multiple">
+
+          <option *ngFor="let projet of projets" [value]="projet.idP">{{projet.nomP}}</option>
         </sm-select>
+         <div *ngIf="submitted && !jalonsForm.controls['list'].valid " class="required"> Au moins 1 projet requis  </div>
       </div>
 
     
       <div fxLayout="row" fxLayoutAlign="end">
         
-          <button (click)="cancel()"  md-button>Annuler <i class="material-icons md-light ">clear</i></button>
+          <button (click)="callback.cancel()"  md-button>Annuler <i class="material-icons md-light ">clear</i></button>
         
         
           <button  type="submit" md-button>Valider <i class="material-icons md-light ">done</i></button>

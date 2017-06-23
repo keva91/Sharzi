@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
          }else{
            console.log('mauvais identifiants')
            this.snackBar.open('Identifiants incorrects','', {
-              duration: 3000, extraClasses:['snackbarCustom']
+              duration: 3000, extraClasses:['snackbarError']
             });
             this.loading = false;
          }

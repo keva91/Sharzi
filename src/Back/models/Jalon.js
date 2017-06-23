@@ -18,10 +18,8 @@ var Jalon={
     
     ajouterJalon:function(Jalon,callback)
     {
-        console.log("inside service");
-        console.log(Jalon.idJ);
-        return db.query("Insert into Jalon values(?,?,?,?)",
-        [Jalon.nomJ, Jalon.descrJ, Jalon.date_debutJ, Jalon.date_finJ],callback);
+        return db.query("Insert into Jalon values(?,?,?,?,?)",
+        [null, Jalon.name,Jalon.desc,Jalon.dateStart,Jalon.date],callback);
     },
 
     modifierJalon:function(id,Jalon,callback)

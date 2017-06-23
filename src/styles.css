@@ -7,6 +7,38 @@ body{
 .material-icons.md-light { color:#777777; }
 .material-icons.md-lightblue { color:rgba(30, 109, 210, 0.73); }
 
-.snackbarCustom{
+
+
+.snackbarError{
     background-color:  red!important;
+}
+
+.snackbarSuccess{
+    background-color:  green!important;
+}
+
+.required_input{
+    position: relative;
+    top: 23px;
+    color: red
+}
+
+.required{
+    margin: 10px 0;
+    color: red
+}
+
+.required_date{
+    position: relative;
+    left: 45px;
+    color: red
+}
+
+
+.datepicker_nomargin{
+    margin: 0px !important;
+}
+
+h3:first-child{
+    margin: calc(2rem - .14285em) 0 1rem;
 }

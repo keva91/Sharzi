@@ -3,12 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import {Http, Headers} from '@angular/http'
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './tdb.component.html',
-  styleUrls: ['./tdb.component.css']
+  selector: 'app-tdb',
+  templateUrl: './ens-tdb.component.html',
+  styleUrls: ['./ens-tdb.component.css']
 })
-export class LoginComponent implements OnInit {
-
+export class TdbComponent implements OnInit {
 
   loading = false;
   mydata;
@@ -20,20 +19,19 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("Ok ta mére");
+
     return this.testsuivi();
   }
 
   testsuivi(){
     this.loading = true;
-    setTimeout(() => {
       console.log("yo timeout")
-       //this.router.navigate(['/home']);
        let headers = new Headers();
        this.http.get('http://localhost:3000/tdb').map(res => res.json()).subscribe(data =>{
          console.log(data)
          return this.mydata = data;
        })
-    }, 2000);
    
   }
 

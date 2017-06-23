@@ -8,7 +8,7 @@ connection.connect(function(error){
     if(error){
         console.log(error)
     }else{
-        console.log('success')
+        console.log('connection DB success')
     }
 
 });
@@ -21,7 +21,7 @@ app.use(cors());
 
 
 app.listen(3000,function(){
-    console.log('listen')
+    console.log('api is listenning')
 })
 
 
@@ -31,3 +31,5 @@ var etudiant = require('./routes/Etudiant')
 var groupes = require('./routes/Groupes')
 var login = require('./routes/Login')
 var projets = require('./routes/Projets')
+var jalons = require('./routes/Jalons')
+

@@ -17,15 +17,15 @@
       <md-tab-group dynamicHeight [(selectedIndex)]="selectedTab">
         <md-tab *ngFor="let tab of tabs" [label]="tab.title">
           <div [ngSwitch]="tab.type">
-            <div *ngSwitchCase="'list'" style="padding:10px 30px">
+            <div *ngSwitchCase="'list'" style="max-height: 360px;padding: 10px 30px;overflow: auto;">
             
               <md-nav-list>
-                <md-list-item *ngFor="let projet of projets" isRippleEnabled>
+                <md-list-item *ngFor="let projet of listProjets" isRippleEnabled>
                   <div  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
                     <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
                     <div>
-                      <div md-line>{{projet.nom}}</div>
-                      <div md-line> {{projet.date | date}} </div>
+                      <div md-line>{{projet.nomP}}</div>
+                      <div md-line> {{projet.date_finP | date}} </div>
                     </div>
                   </div>
                   <md-divider></md-divider>
@@ -35,11 +35,11 @@
             </div>
             <div *ngSwitchCase="'creationProjet'">
 
-              <app-ens-projet-create [test]="callbacks"></app-ens-projet-create>
+              <app-ens-projet-create [callback]="callbacksFunctions"></app-ens-projet-create>
 
             </div>
             <div *ngSwitchCase="'creationJalon'">
-              <app-ens-jalons-create></app-ens-jalons-create>
+              <app-ens-jalons-create [callback]="callbacksFunctions" [projets]="listProjets"  ></app-ens-jalons-create>
             </div>
 
 
