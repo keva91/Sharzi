@@ -1,6 +1,6 @@
 
 var express = require('express');
-var app = require('../server')
+var app = require('../server');
 var Projet=require('../models/Projet');
 var Jalon_Projet = require('../models/Jalon_Projet');
 var Jalon = require('../models/Jalon');
