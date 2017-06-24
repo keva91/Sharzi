@@ -1,18 +1,28 @@
 <div>
     <table>
         <tbody>
-            <tr>
-                <th>GROUPE</th>
-                <th *ngFor="let item of createRange(); let i of items"> JALON{{i}} </th>
-                <th>PROJET</th>
-            </tr>
 
-            <tr *ngFor="let mydata of mydata[1]">
-                <td>{{mydata.nomG}}</td>
-                <td *ngFor="let item of createRange(); let i of items"> {{mydata.noteJP}} </td>
-
-                <td>{{mydata.noteP}}</td>
-            </tr>
+    <div fxLayout="column">
+        <div fxLayout="row"> 
+            GROUPE 
+            <div *ngFor="let item of createRange()"> JALON{{item}} </div>
+            PROJET
+        </div>  
+    </div>
+    <!--<div fxLayout="column" *ngFor=" mydata of mydata[1]">
+        <div fxLayout="row"> 
+            {{mydata.nomG}}
+            <div *ngFor=" jalon_projet of mydata.jalon_projets"> {{jalon_projet.note}} </div>
+            {{mydata.noteP}}
+        </div>-->
+    </div>
+    <!--        <ng-container *ng-if!="tabnotejp(mydata.idG)=='true'">
+                <tr *ngFor="let mydata of mydata[1]">
+                    <td>{{mydata.nomG}}</td>
+                    <td *ng-if!="tabnotejp(mydata.idG)=='true'" *ngFor="mydata of mydata[1]"> {{mydata.noteJP}} </td>
+                    <td>{{mydata.noteP}}</td>
+                </tr>
+            </container-->
          </tbody>
     </table>
 </div>

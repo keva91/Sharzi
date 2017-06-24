@@ -14,6 +14,8 @@ export class EnsNoteComponent implements OnInit {
   mydata;
   maxJP;
   rangeMax;
+  tabnotes;
+  dataTabNote;  
 
   constructor(
     private router: Router,
@@ -37,21 +39,23 @@ export class EnsNoteComponent implements OnInit {
       .map(res => res.json())
       .subscribe(data =>{
        
-        console.log("--------- ALL DATA -------------");
-        console.log(data);
-        console.log("--------- Tab 0 Data -------------");
-        console.log(data[0]);
-        console.log("--------- Nb Max Jalon Projet -------------");
-        console.log(data[0][0].JProjet);
-        console.log("--------- Tab 1 Data -------------");
-        console.log(data[1]);
-        console.log("--------- Tab 1 Ligne 0 Data -------------");
-        console.log(data[1][0]);
-        console.log("--------- Tab 1 Ligne 0 NomG Data -------------");
-        console.log(data[1][0].nomG);
+        // console.log("--------- ALL DATA -------------");
+        // console.log(data);
+        // console.log("--------- Tab 0 Data -------------");
+        // console.log(data[0]);
+        // console.log("--------- Nb Max Jalon Projet -------------");
+        // console.log(data[0][0].JProjet);
+        // console.log("--------- Tab 1 Data -------------");
+        // console.log(data[1]);
+        // console.log("--------- Tab 1 Ligne 0 Data -------------");
+        // console.log(data[1][0]);
+        // console.log("--------- Tab 1 Ligne 0 NomG Data -------------");
+        // console.log(data[1][0].nomG);
 
        
        this.maxJP = data[0][0].JProjet;
+       this.dataTabNote = data[1];
+       
         //  return this.mydata = data[0].jalonProjet;
         return this.mydata = data;
 
@@ -66,4 +70,33 @@ export class EnsNoteComponent implements OnInit {
     }
     return this.rangeMax;
   }
+
+grprecedent = null;
+gractuel = null;
+
+  // tabnotejp(dataTab){
+  //   var number = this.maxJP;
+  //   this.tabnotes = [];
+  //   for( this.dataTabNote in this.dataTabNote)
+  //   {
+  //     if (this.verifgroupelist(dataTab) == true)
+  //      {
+  //        this.tabnotes.push(this.dataTabNote.noteJP);
+  //      }
+  //   }
+  //   return this.tabnotes;
+  // }
+  //     verifgroupelist(identifiantG){
+  //      this.gractuel = identifiantG.idG;
+  //      if(this.grprecedent==null || this.grprecedent != this.gractuel)
+  //      {
+  //        this.grprecedent = this.gractuel;
+  //        return true;
+  //      }
+  //      else 
+  //     {
+  //       return false;
+  //     }
+  //   }
+
 }
