@@ -15,11 +15,11 @@
       <md-tab-group dynamicHeight [(selectedIndex)]="selectedTab">
         <md-tab *ngFor="let tab of tabs" [label]="tab.title">
           <div [ngSwitch]="tab.type">
-            <div *ngSwitchCase="'list'" style="max-height: 435px;padding: 10px 30px;overflow: auto;">
+            <div *ngSwitchCase="'list'" style="max-height: 360px;padding: 10px 30px;overflow: auto;">
             
               <md-nav-list>
                 <md-list-item *ngFor="let projet of listProjets"  >
-                  <div  fxFill  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
+                  <div fxFill  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
                     <div fxFlex fxLayout="row"  fxLayoutAlign="start center" (click)="detailProjet(projet)">
                       <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
                       <div >
