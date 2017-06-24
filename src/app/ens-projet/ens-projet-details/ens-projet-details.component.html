@@ -2,30 +2,44 @@
           
   
 <md-card class="example-card">
-  <md-card-header>
-    <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
-    <md-card-subtitle>Projet : </md-card-subtitle>
-    <md-card-title>{{projet.nomP}}</md-card-title>
-
-    <md-card-subtitle>Date : </md-card-subtitle>
-    <md-card-title>{{projet.date_finP  | date}}</md-card-title>
+  <h2>  <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon> Projet <md-divider></md-divider> </h2>
     
+  <md-card-header fxLayout="row" fxLayoutAlign="start start">
+    <div fxFlex="22" fxLayout="column" fxLayoutAlign="start"  fxLayoutGap="10px" >
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxFlex="22" class="detail_Title">Nom : </div>
+        <div>{{projet.nomP}}</div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" >
+        <div fxFlex="22" class="detail_Title" >Date : </div>
+        <div>{{projet.date_finP  | date}}</div>
+      </div>
+      
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px" style="padding-left: 34px;">
+    
+      <div fxFlex="17" class="detail_Title" >Description : </div>
+      <p>
+        {{projet.descrP}}
+      </p>
+      
+    </div>
   </md-card-header>
 
-  <md-card-content>
-    <md-card-subtitle>Description : </md-card-subtitle>
-    <p>
-      {{projet.descrP}}
-    </p>
-
+  <md-card-content style="margin:20px 0 !important;">
+    <h2>  <md-icon md-list-icon style="margin:10px" class="md-lightblue">description</md-icon> Jalons <md-divider></md-divider></h2>
+    
     <p>
       <md-nav-list>
-        <md-list-item *ngFor="let jalon of jalons" isRippleEnabled>
+        <md-list-item  *ngFor="let jalon of jalons" >
           <div  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
             <md-icon md-list-icon style="margin:10px" class="md-lightblue">description</md-icon>
-            <div>
+            <div fxLayout="row" fxLayoutAlign="start space-between">
               <div md-line>{{jalon.idJalonJP}}</div>
-              <!--<div md-line>  date :  {{jalon.date_finJ | date}} </div>-->
+              <div md-line>  date :  {{jalon.date_finJ | date}} </div>
+              <div md-line>  {{jalon.idEtatJP }} </div>
             </div>
           </div>
           <md-divider></md-divider>
@@ -33,6 +47,7 @@
       </md-nav-list>
     </p>
   </md-card-content>
+
   <md-card-actions>
     <button (click)="callback.cancel()"  md-button>Annuler <i class="material-icons md-light ">undo</i></button>
     <button md-button>SHARE</button>

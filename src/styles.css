@@ -55,3 +55,21 @@ h3:first-child{
 }
 
 
+
+.detail_Title{
+    font-size: 14px;
+    color: rgba(0,0,0,.54);
+}
+
+md-list-item:hover{
+    background:rgba(88, 103, 154, 0.25)!important;
+}
+
+md-list-item:focus{
+
+    outline:none!important;
+}
+
+.mat-list-icon{
+    padding: 0px!important;
+}

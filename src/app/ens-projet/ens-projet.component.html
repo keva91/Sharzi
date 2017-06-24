@@ -1,9 +1,6 @@
 <div>
     
   <md-card class="example-card mat-elevation-z6">
-    <md-card-header>
-      <md-card-title>Projets</md-card-title>
-    </md-card-header>
     <div  style="position:relative;">
       <div fxLayout="row" fxLayoutAlign="end center" style="position:absolute;z-index:25;top:25px;right:1px;" >
         <button *ngIf="tabs.length <= 1"  (click)="addJalon()" md-button>Créer Jalon <i class="material-icons md-light ">add</i></button>
@@ -12,25 +9,28 @@
       </div>
     
     </div>
+
     
     <md-card-content>
       <md-tab-group dynamicHeight [(selectedIndex)]="selectedTab">
         <md-tab *ngFor="let tab of tabs" [label]="tab.title">
           <div [ngSwitch]="tab.type">
-            <div *ngSwitchCase="'list'" style="max-height: 360px;padding: 10px 30px;overflow: auto;">
+            <div *ngSwitchCase="'list'" style="max-height: 435px;padding: 10px 30px;overflow: auto;">
             
               <md-nav-list>
-                <md-list-item *ngFor="let projet of listProjets" isRippleEnabled>
-                  <div fxFill  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
-                    <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
-                    <div>
-                      <div md-line>{{projet.nomP}}</div>
-                      <div md-line> {{projet.date_finP | date}} </div>
+                <md-list-item *ngFor="let projet of listProjets"  >
+                  <div  fxFill  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
+                    <div fxFlex fxLayout="row"  fxLayoutAlign="start center" (click)="detailProjet(projet)">
+                      <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
+                      <div >
+                        <div md-line>{{projet.nomP}}</div>
+                        <div md-line> {{projet.date_finP | date}} </div>
+                      </div>
+                      <div fxFlex></div>
                     </div>
-                    <div fxFlex></div>
+                    
                     <div fxLayout="row"  >
                       <button  (click)="editProjet()" mdTooltip="Modifier Projet" mdTooltipPosition="before" md-button> <i class="material-icons md-light ">tune</i></button>
-                      <button  (click)="detailProjet(projet)" mdTooltip="Details Projet" mdTooltipPosition="after" md-button><i class="material-icons md-light ">remove_red_eye</i></button>
                     </div>
                   </div>
                   <md-divider></md-divider>

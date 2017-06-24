@@ -40,8 +40,9 @@ export class EnsProjetComponent implements OnInit {
 
   getJalonsFromProjet(projetId){
     console.log(projetId)
-    let headers = new Headers();
-    this.http.get('http://localhost:3000/Jalon-Projet/projet/',projetId).map(res => res.json()).subscribe(data =>{
+    let headers2 = new Headers();
+    console.log('just before get')
+    this.http.get('http://localhost:3000/Jalon-Projet/projet/'+projetId).map(res => res.json()).subscribe(data =>{
       console.log(data);
       this.listJalons = data;
 
