@@ -37,12 +37,10 @@ var Groupe={
     ObtTabNote:function(callback)
     {
         var tab = db.query("select "
-                + "g.idG, g.nomG, g.idProjetG, p.idNoteP, n.note as noteP, n2.note as noteJ1 "
-                + "from groupe g inner join projet p on g.idProjetG=p.idP "
-	            + "inner join note n on p.idNoteP=n.idN "
-                + "inner join jalon j on j.idProjet=p.idP "
-                + "inner join note n2 on j.idNoteJ=n2.idN "
-                + "order by g.nomG, n2.idN;", callback);
+            + "g.idG, g.nomG, g.idProjetG, p.noteP, jp.idJalonJP, jp.noteJP "
+            + "from groupe g inner join projet p on g.idProjetG=p.idP "
+            + "inner join jalon_projet jp on p.idP=jp.idProjetJP "
+            + "order by g.nomG, jp.idJalonJP;", callback);
 
         // console.log(this.tab);
 
