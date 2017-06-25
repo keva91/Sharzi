@@ -82,9 +82,9 @@ md-list-item:focus{
     box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);
 }
 
-.myChipsRed{
-    border: 1px solid rgba(226, 106, 106, 0.53); 
-    background: rgba(177, 1, 1, 0.73);
+.myChipsblue{
+    border: 1px solid rgba(88, 125, 162, 0.53); 
+    background: rgba(0, 63, 142, 0.73);
     color: white;
     border-radius: 6px;
     box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);

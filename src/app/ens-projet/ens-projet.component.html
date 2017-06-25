@@ -18,7 +18,7 @@
             <div *ngSwitchCase="'list'" style="max-height: 435px;padding: 10px 30px;overflow: auto;">
             
               <md-nav-list>
-                <md-list-item *ngFor="let projet of listProjets"  >
+                <md-list-item *ngFor="let projet of listProjets">
                   <div  fxFill  fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
                     <div fxFlex fxLayout="row"  fxLayoutAlign="start center" (click)="detailProjet(projet)">
                       <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon>
@@ -30,7 +30,8 @@
                     </div>
                     
                     <div fxLayout="row"  >
-                      <button  (click)="editProjet()" mdTooltip="Modifier Projet" mdTooltipPosition="before" md-button> <i class="material-icons md-light ">tune</i></button>
+                      <button  (click)="editProjet(projet)" mdTooltip="Modifier" mdTooltipPosition="before" md-button> <i class="material-icons md-light ">tune</i></button>
+                      <button  (click)="deleteProjet(projet)" mdTooltip="Supprimer" mdTooltipPosition="after" md-button> <i class="material-icons md-light ">delete</i></button>
                     </div>
                   </div>
                   <md-divider></md-divider>
@@ -41,6 +42,11 @@
             <div *ngSwitchCase="'creationProjet'">
 
               <app-ens-projet-create [callback]="callbacksFunctions"></app-ens-projet-create>
+
+            </div>
+            <div *ngSwitchCase="'editionProjet'">
+
+              <app-ens-projet-create [projet]="projetSelected" [callback]="callbacksFunctions"></app-ens-projet-create>
 
             </div>
             <div *ngSwitchCase="'creationJalon'">

@@ -24,9 +24,9 @@ var Jalon={
 
     modifierJalon:function(id,Jalon,callback)
     {
-        return  db.query("update Jalon set nomG=?, descrJ=?, date_finJ=?, " 
-            + "commentaireJ=?, rapportAdr=? where idJ=?",
-            [Jalon.nomJ, Jalon.descrJ, Jalon.date_debutJ, Jalon.date_finJ],callback);
+        return  db.query("update Jalon set nomJ=?, descrJ=?, date_finJ=? " 
+            + " where idJ=?",
+            [Jalon.name, Jalon.desc, Jalon.date, id],callback);
     },
     
     supprimerJalon:function(id,callback)

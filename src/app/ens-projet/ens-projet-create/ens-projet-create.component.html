@@ -1,29 +1,36 @@
 <div>
           
-  <form [formGroup]="projetForm" (ngSubmit)="createProjet($event)" style="padding:20px 0;">
+  <form [formGroup]="projetForm" style="padding:20px 0;">
 
     <div fxLayout="row" fxLayoutAlign="start center" >
       <md-input-container  fxFlex="20">
-        <input formControlName="name" mdInput placeholder="Nom du projet" >
+        <input formControlName="name" value="{{projet.nomP}}" mdInput placeholder="Nom du projet" >
+        <div *ngIf="submitted && !projetForm.controls['name'].valid " class="required_input">Nom requis  </div>
       </md-input-container>
 
-      <md2-datepicker formControlName="date" fxFlex="20" [(ngModel)]="date" placeholder="date de fin du projet" style="margin:0 0 26px 30px;"></md2-datepicker>
+      <div fxLayout="column">
+        <md2-datepicker formControlName="date" fxFlex="20" value="{{projet.date_finP}}" placeholder="date de fin du projet"  style="margin:0 0 26px 30px;" [ngClass]="{'datepicker_nomargin': submitted && !projetForm.controls['date'].valid }"></md2-datepicker>
+        <div *ngIf="submitted && !projetForm.controls['date'].valid " class="required_date">Date requise  </div>
+      </div>
+
+      
 
     </div>
     <div  fxLayout="row"  >
-      <md-input-container  fxFlex="20" >
-          <textarea formControlName="desc" mdInput placeholder="Description du projet"></textarea>
+      <md-input-container  fxFlex="45" >
+          <textarea formControlName="desc" mdInput value="{{projet.descrP}}" placeholder="Description du projet"></textarea>
       </md-input-container>
     </div>
+    </form>
 
     <div fxLayout="row" fxLayoutAlign="end">
       
         <button (click)="callback.cancel()"  md-button>Annuler <i class="material-icons md-light ">clear</i></button>
     
-        <button  type="submit" md-button>Valider <i class="material-icons md-light ">done</i></button>
+        <button (click)="validProjet()"  md-button>Valider <i class="material-icons md-light ">done</i></button>
       
     </div>
-  </form>
+  
     
 
 </div>

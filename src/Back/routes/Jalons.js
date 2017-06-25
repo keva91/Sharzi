@@ -42,10 +42,11 @@ app.get('/jalon/:id?',function(req,res,next)
     {
         Jalon.ObtTsJalons(function(err,rows)
         {
-            if(err)
-            res.json(err);
-            else
-            res.json(rows);
+            if(err){
+                res.json(err);
+            }else{
+                res.json(rows);
+            }
         });
     }
 });
@@ -58,9 +59,11 @@ app.post('/jalon',function(req,res,next)
     Jalon.ajouterJalon(req.body,function(err,row)
     {
         console.log(req.body)
+        console.log('in ajouterJalon')
         if(err){
-             res.json(err);
-             console.log('error creation jalon')
+            console.log('error creation jalon')
+            res.json(err);
+             
         }else{
             
             console.log('ok creation jalon')
@@ -88,9 +91,7 @@ app.post('/jalon',function(req,res,next)
 
         }
 
-
-       
-            
+  
 
     });
 
@@ -98,30 +99,61 @@ app.post('/jalon',function(req,res,next)
 });
 
 
-app.put('/jalon',function(req,res,next)
+app.put('/jalon/:id?',function(req,res,next)
 {
    
+   var id = parseInt(req.params.id)
 
-    Jalon.modifierJalon(function(err,rows)
+    Jalon.modifierJalon(id,req.body,function(err,rows)
     {
-        if(err)
+        if(err){
+            console.log('error update jalon')
+            console.log(err)
             res.json(err); 
-        else
+        }else{
+            console.log('ok update jalon')
             res.json(rows);
+        }
     });
 
 });
 
 
 
-app.delete('/jalon',function(req,res,next)
+app.delete('/jalon/:id?',function(req,res,next)
 {
-   
+    console.log(req.params.id)
+    if(req.params.id)
+    {
+        Jalon_Projet.supprimerJalon_ProjetByJalonId(req.params.id,function(err,rows)
+        {
+            if(err){
+                console.log('err supp jP')
+                console.log(err)
+                res.json(err);
+            }else{
+                //res.json(rows);
 
-     Jalon.supprimerJalon(req.params.id,function(err,count){
-         if(err)
-             res.json(err);
-         else
-             res.json(count);
-     });
+                Jalon.supprimerJalon(req.params.id,function(err,rows){
+
+
+                    if(err){
+                        console.log('error supp jalon')
+                        console.log(err)
+                        res.json(err);
+                    }else{
+                        res.json(rows);
+                    }
+
+                })
+            }
+        });
+    }
+
+
+
+
+
+
+     
 });

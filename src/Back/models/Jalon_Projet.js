@@ -58,6 +58,14 @@ var Jalon_Projet={
     supprimerJalon_Projet:function(id,callback)
     {
          return db.query("delete from Jalon_Projets_Projet where idJalon_Projet=?",[id],callback);
+    },
+    supprimerJalon_ProjetByProjetId:function(id,callback)
+    {
+         return db.query("DELETE FROM jalon_projet WHERE jalon_projet.idProjetJP=?;",[id],callback);
+    },
+    supprimerJalon_ProjetByJalonId:function(id,callback)
+    {
+         return db.query("DELETE FROM jalon_projet WHERE jalon_projet.idJalonJP=?;",[id],callback);
     }
 };
 module.exports=Jalon_Projet;

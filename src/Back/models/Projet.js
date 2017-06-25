@@ -6,6 +6,11 @@ var Projet={
     {
         return db.query("select idP, NoteP from Projet where idP=?",id, callback);
     },
+
+    ObtFullProjetById:function(id, callback)
+    {
+        return db.query("select * from Projet where idP=?",id, callback);
+    },
     
     ObtNoteProjet:function(callback)
     {
@@ -25,10 +30,11 @@ var Projet={
         [null,Projet.name, Projet.desc, Projet.date, Projet.dateStart,null],callback);
     },
 
-    modifierProjet:function(id,Projet,callback)
+    modifierProjet:function(Projet,callback)
     {
+        console.log(Projet)
         return  db.query("update Projet set nomP=?, descrP=?, date_finP=?, date_creationP=? where idP=?",
-             [Projet.nomP, Projet.descrP, Projet.date_finP, Projet.date_creationP, id],callback);
+             [Projet.name, Projet.desc, Projet.date, Projet.dateStart, Projet.id],callback);
     },
     
     supprimerProjet:function(id,callback)

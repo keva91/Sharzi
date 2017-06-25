@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import {Http, Headers} from '@angular/http';
+import {MdSnackBar,MdDialog} from '@angular/material';
+import { EnsJalonDeleteComponent } from '../ens-jalons/ens-jalon-delete/ens-jalon-delete.component';
 
 @Component({
   selector: 'app-ens-jalons',
@@ -8,22 +11,36 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class EnsJalonsComponent implements OnInit {
 
-constructor(public fbJ: FormBuilder) { }
+constructor(
+  private http: Http,
+  public dialog: MdDialog) { }
 
   selectedTab = 0;
+  jalonSelected = null;
 
-   projets = [
-    {nom:'projet 1', description:'Descrition du projet 1',date: new Date('2017/06/28')    },
-    {nom:'projet 2', description:'Descrition du projet 2',date: new Date('2017/06/25')    },
-    {nom:'projet 3', description:'Descrition du projet 3',date: new Date('2017/06/29')    }
-  ]
+  listJalons  = [];
+  listProjets  = [];
 
-  jalons = [
-    {nom:'jalon 1', date:new Date('2017/05/10'),  projets:[this.projets[0],this.projets[1],this.projets[2]] ,description:'Descrition du jalon 1'   },
-    {nom:'jalon 2', date:new Date('2017/06/01'),  projets:[this.projets[0],this.projets[1],this.projets[2]], description:'Descrition du jalon 2' },
-    {nom:'jalon 3', date:new Date('2017/06/29'),  projets:[this.projets[0],this.projets[1],this.projets[2]], description:'Descrition du jalon 3' }
-  ]
 
+
+
+  getJalons(){
+      let headers = new Headers();
+      this.http.get('http://localhost:3000/jalon/').map(res => res.json()).subscribe(data =>{
+        console.log(data);
+        this.listJalons = data;
+
+      })
+  }
+
+  getProjets(){
+    let headers = new Headers();
+    this.http.get('http://localhost:3000/projet').map(res => res.json()).subscribe(data =>{
+      console.log(data);
+      this.listProjets = data;
+
+    })
+  }
  
 
 
@@ -33,38 +50,75 @@ constructor(public fbJ: FormBuilder) { }
 
 
 
+
   ngOnInit() {
-    
+    this.getJalons();    
+    this.getProjets();    
   }
 
 
-  addTab(){
-    console.log(this.tabs.length)
-    if(!(this.tabs.length > 1) ){
-      this.tabs.push({ title: 'Creation Jalon', type: 'creation'});
-      this.selectedTab = 1;
-      }    
+
+  callbacksFunctions =  { 
+    cancel : this.cancel.bind(this),
+    editjalon : this.editJalon.bind(this)
   }
 
-  cancel(){
-    
-    this.tabs.splice(1, 1,);
-      
+  cancel(res,from){
+    if(res){
+      this.getJalons();
+    }
+
+    if(this.tabs.length > 2 ){
+      if(from && from == 'edit'){
+        console.log('edit')
+      }
+      this.tabs.splice(2, 1,);
+
+    }else{
+      this.tabs.splice(1, 1,);
+    }
   }
 
-  public jalonsForm = this.fbJ.group({
-    name: ["", Validators.required],
-    date: ["", Validators.required],
-    listProjets: ["", Validators.required],
-  });
+
  
-  createJalon(event) {
-    console.log(event);
-    console.log(this.jalonsForm.value);
-    this.jalons.push({ nom: this.jalonsForm.value.name, date: this.jalonsForm.value.date, projets:this.jalonsForm.value.projet,description:this.jalonsForm.value.projet});
-    this.tabs.splice(1, 1,)
-    this.selectedTab = 0;
-    console.log(this.jalons)
+  addJalon(){
+    if(!(this.tabs.length > 1) ){
+      this.tabs.push({ title: 'Creation Jalon', type: 'creationJalon'});
+      this.selectedTab = 1;
+    }    
+  }
+
+
+  editJalon(jalon){
+    console.log('in edit')
+    console.log(jalon)
+    this.jalonSelected = jalon;
+    this.tabs.push({ title: 'Edition Jalon', type: 'editionJalon'});
+      
+    if(this.tabs.length > 1){
+      this.selectedTab = 2;
+    }else{
+      this.selectedTab = 1;
+    }    
+  }
+
+  deleteJalon(jalon){
+    let dialogRef = this.dialog.open(EnsJalonDeleteComponent, {
+      width: '400px',
+      data: jalon.idJ
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          
+          console.log(result)
+          if(result){
+            console.log('supp')
+            this.getJalons(); 
+            this.getProjets()
+          }else{
+            console.log('nop')
+          }
+    });
+
   }
 
 }
