@@ -79,13 +79,7 @@ app.post('/',function(req,res,next)
             res.json(req.body);
     });
 
-    Jalon_Projet.modifierJalon_Projet(function(err,rows)
-    {
-        if(err)
-            res.json(err);
-        else
-            res.json(rows);
-    });
+
 
      Jalon_Projet.supprimerJalon_Projet(req.params.id,function(err,count){
          if(err)
@@ -93,4 +87,25 @@ app.post('/',function(req,res,next)
          else
              res.json(count);
      });
+});
+
+app.put('/Jalon-Projet/projet',function(req,res,next)
+{
+    
+console.log(req.body.note)
+console.log(req.body.id)
+console.log(req.body)
+    Jalon_Projet.modifierNoteJalon_Projet(req.body,function(err,rows)
+    {
+        if(err){
+            console.log('error')
+            console.log(err)
+            res.json(err);
+        }else{
+            console.log('win')
+            res.json(rows);
+        }
+    });
+
+     
 });

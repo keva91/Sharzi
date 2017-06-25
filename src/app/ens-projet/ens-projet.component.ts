@@ -38,6 +38,9 @@ export class EnsProjetComponent implements OnInit {
     })
   }
 
+
+
+
   getJalonsFromProjet(projetId){
     console.log(projetId)
     let headers2 = new Headers();

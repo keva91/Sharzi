@@ -73,3 +73,29 @@ md-list-item:focus{
 .mat-list-icon{
     padding: 0px!important;
 }
+
+.myChipsGreen{
+    border: 1px solid rgba(168, 185, 168, 0.23);
+    background: rgba(0, 121, 0, 0.76);
+    color: white;
+    border-radius: 6px;
+    box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);
+}
+
+.myChipsRed{
+    border: 1px solid rgba(226, 106, 106, 0.53); 
+    background: rgba(177, 1, 1, 0.73);
+    color: white;
+    border-radius: 6px;
+    box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);
+
+}
+
+.myChipsfutur{
+    border: 1px solid rgba(90, 90, 90, 0);
+    background: rgba(90, 90, 90, 0.81);
+    color: white;
+    border-radius: 6px;
+    box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);
+    
+}

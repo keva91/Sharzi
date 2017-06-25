@@ -4,11 +4,11 @@ import {Http, Headers} from '@angular/http'
 import {MdSnackBar} from '@angular/material';
 
 @Component({
-  selector: 'app-ens-jalons-create',
-  templateUrl: './ens-jalons-create.component.html',
-  styleUrls: ['./ens-jalons-create.component.css']
+  selector: 'app-ens-jalon-create',
+  templateUrl: './ens-jalon-create.component.html',
+  styleUrls: ['./ens-jalon-create.component.css']
 })
-export class EnsJalonsCreateComponent implements OnInit {
+export class EnsJalonCreateComponent implements OnInit {
 
   constructor(
     public fbJ: FormBuilder,
@@ -58,6 +58,7 @@ export class EnsJalonsCreateComponent implements OnInit {
   
   createJalon(event) {
     this.submitted = true;
+    console.log(this.jalonsForm)
 
     if( this.jalonsForm.valid ) {
       console.log('valid')

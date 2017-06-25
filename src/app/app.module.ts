@@ -10,6 +10,7 @@ import 'hammerjs';
 import { routing } from './app.router';
 import { Md2Module }  from 'md2';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MdDialogModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { HomeEnseignantComponent } from './home-enseignant/homeEnseignant.component';
@@ -20,9 +21,11 @@ import { EnsProjetDetailsComponent } from './ens-projet/ens-projet-details/ens-p
 import { EnsGroupeComponent } from './ens-groupe/ens-groupe.component';
 import { EnsNoteComponent } from './ens-note/ens-note.component';
 import { EnsJalonsComponent } from './ens-jalons/ens-jalons.component';
-import { EnsJalonsCreateComponent } from './ens-jalons/ens-jalons-create/ens-jalons-create.component';
+import { EnsJalonCreateComponent } from './ens-jalons/ens-jalon-create/ens-jalon-create.component';
+import { EnsJalonDetailComponent } from './ens-jalons/ens-jalon-detail/ens-jalon-detail.component';
 import { HomeEtudiantComponent } from './home-etudiant/home-etudiant.component';
 import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
+
 
 @NgModule({
   declarations: [
@@ -33,19 +36,22 @@ import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
     EnsGroupeComponent,
     EnsNoteComponent,
     EnsJalonsComponent,
-    EnsJalonsCreateComponent,
+    EnsJalonCreateComponent,
     HomeEtudiantComponent,
     TdbComponent,
     EnsProjetCreateComponent,
-    EnsProjetDetailsComponent
+    EnsProjetDetailsComponent,
+    EnsJalonDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,MaterialModule,FlexLayoutModule,
     routing,BrowserAnimationsModule,Md2Module.forRoot(),NgSemanticModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    MdDialogModule 
   ],
+  entryComponents: [EnsJalonDetailComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

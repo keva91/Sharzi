@@ -49,6 +49,11 @@ var Jalon_Projet={
          return  db.query("update Jalon_Projets_Projet set commentaireJ=?, rapportAdr=? noteJP=? where idJalon_Projet=?",
              [Jalon_Projets_Projet.commentaireJP, Jalon_Projets_Projet.rapportAdr, Jalon_Projets_Projet.NoteJP, id],callback);
     },
+    modifierNoteJalon_Projet:function(data,callback)
+    {
+         return  db.query("update Jalon_Projet set NoteJP=? where idJalonJP=?",
+             [data.note,data.id],callback);
+    },
     
     supprimerJalon_Projet:function(id,callback)
     {

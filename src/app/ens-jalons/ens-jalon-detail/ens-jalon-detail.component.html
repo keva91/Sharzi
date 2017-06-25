@@ -1,0 +1,52 @@
+<h2> 
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <md-icon md-list-icon style="margin:10px" class="md-lightblue">description</md-icon> Jalon
+  </div>  
+  <md-divider></md-divider> 
+</h2>
+
+<md-dialog-content>
+  
+  <form [formGroup]="jalonForm" (ngSubmit)="modifyJalon($event)" >
+    
+  <md-card-header fxLayout="row" fxLayoutAlign="start start">
+    <div fxFlex="35" fxLayout="column" fxLayoutAlign="start"  fxLayoutGap="10px" >
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxFlex="22" class="detail_Title">Nom : </div>
+        <div>{{jalon.nomJ}}</div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" >
+        <div fxFlex="22" class="detail_Title" >Date : </div>
+        <div>{{jalon.date_finJ | date}}</div>
+      </div>
+
+      <div  fxLayout="row" fxLayoutAlign="start center">
+        <div fxFlex="28" class="detail_Title">Note :</div>
+        <md-input-container  fxFlex >
+          <input formControlName="note" value="{{jalon.NoteJP}}" mdInput placeholder="Entrez une note /20" >
+        </md-input-container>
+        
+      </div>
+      
+    </div>
+
+    <div fxLayout="row" fxFlex fxLayoutAlign="start start" fxLayoutGap="10px" style="padding-left: 34px;">
+    
+      <div fxFlex="28" class="detail_Title" >Description : </div>
+      <p>
+        {{jalon.descrJ}}
+      </p>
+      
+    </div>
+
+   
+    
+  </md-card-header>
+ </form>
+    
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="dialogRef.close()" ><i class="material-icons md-light ">undo</i>Retour</button>
+  <button *ngIf="jalonForm.controls['note'].value && jalonForm.controls['note'].dirty " (click)="modifyJalon()" md-button>Valider <i class="material-icons md-light ">done</i></button>
+</md-dialog-actions>
