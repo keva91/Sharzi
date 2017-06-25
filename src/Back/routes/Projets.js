@@ -104,8 +104,7 @@ app.get('/tdb',function(req,res,next)
             console.log("--------------result rows 2-------------------");
             console.log(callbackResults[1]); // rows2*/
             // use this data to send back to client etc.
-
-            return callbackResults;
+            res.send(JSON.stringify(callbackResults));
         }
     });
   

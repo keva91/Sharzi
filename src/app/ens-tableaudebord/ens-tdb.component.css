@@ -1,5 +1,5 @@
 .container {
-  width: 100%;
+  text-align: center;
 }
 
 .progressbar {
@@ -9,113 +9,61 @@
 .progressbar li{
   list-style-type: none;
   float: left;
+  width: 10%;
   position: relative;
   text-align: center;
 }
 
-.progressbar li::before {
+.progressbar li:before {
   content : counter(step);
   counter-increment: step;
-  width: 30px;
+  width: 40px;
   height: 40px;
   line-height: 30px;
-  border: 5px solid #ddd;
   display: block;
+  border: 5px solid #ddd;
   text-align: center;
   margin: 0 auto 10px auto;
   border-radius: 50%;
-  background-color: white;
+  background-color: #ddd;
+  color: #ddd;
 }
 
 .progressbar li:after {
-  content: '';
+  content: '1';
   position: absolute;
   width: 100%;
-  height: 5px;
-  background-color: #ddd;
+  height: 10px;
+  background-color: solid red;
   top: 20px;
   bottom: 20px;
   left: -50%;
   z-index: -1;
 }
 
-.progressbar li:first-child::after {
+.progressbar li:first-child:after {
   content : none;
 }
 
-.progressbar li.active {
+.progressbar li.FINI {
   color : green;
 }
 
-.progressbar li.doing {
-  color : blue;
-}
-.progressbar li.doing:before {
-  border-color: blue;
-}
-
-.progressbar li.active:before {
+.progressbar li.FINI:before {
   border-color: green;
+  background-color: green;
+  color : green;
 }
 
-.progressbar li.active + li::after {
+.progressbar li.FINI + li::after {
   background-color: green;
 }
 
-
-/*.container 
-{
-      margin:150px auto; max-width:420px;
-            font-size: 18px;
+.progressbar li.EN_COURS {
+  color : blue;
 }
-ul.progressbar {
-  height: 75px;
-  padding: 0;
-  counter-reset: step;
+.progressbar li.EN_COURS:before {
+  border-color: blue;
+  background-color: blue;
+  color : blue;
 }
-ul.progressbar li {
-  list-style-type: none;
-  color: rgb(0, 0, 0);
-  float: left;
-  position: relative;
-  text-align: center;
-  font-size: 12px;
-}
-ul.progressbar li:before {
-  content: counter(step);
-  counter-increment: step;
-  color: #000;
-  width: 42px;
-  height: 42px;
-  line-height: 42px;
-  border-radius: 50%;
-  display: block;
-  text-align: center;
-  margin: 0 auto 10px auto;
-  background: rgb(155, 155, 155);
-}
-ul.progressbar li:after {
-  content: "";
-  background: #9d9d9d;
-  position: absolute;
-  width: 100%;
-  height: 14px;
-  top: 14px;
-  right: -50%;
-  z-index: -1;
-}
-ul.progressbar li:last-child:after {
-  content: none;
-}
-ul.progressbar li.done:before, ul.progressbar li.done:after {
-  background: rgb(33, 197, 41);
-  color: #fff;
-
-}
-ul.progressbar li.current:before {
-  background: rgb(22, 140, 240);
-  color: #fff;
-}
-ul.progressbar li.fail:before {
-  background: rgb(33, 197, 41)
-}*/
