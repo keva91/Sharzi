@@ -1,16 +1,31 @@
-<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="./jquery.progressbar.js"></script>
-{{mydata}}
-  <script type="text/javascript">
-	for(var i =0; i<3; i++){
-		jQuery(document).ready(function($) {
-		  $('#steps').progressbar({
-			steps: ['Jalon 1', '~Jalon 2', '@Jalon 3', 'Jalon 4', 'Jalon 5']
-		  });
-		});
-	}
-  </script>  
+<!--<div ng-app="myApp">
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="./jquery.progressbar.js"></script>
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				$('#steps').progressbar({
+				steps: ['Jalon 1', '~Jalon 2', '@Jalon 3', 'Jalon 4', 'Jalon 5']
+				});
+			});
+		</script>  
+	<div ng-controller="myCtrl" class="container">
+		<div ng-repeat="">
+			<div ng-if="">
+				<h1>Test</h1>
+				<div id='steps'></div>
+			</div>
+		</div>
+	</div>
+</div>-->
 <div class="container">
-  <h1>jQuery Step Progress Bar</h1>
-  <div id="steps"></div>
+	<div *ngFor="let Projet of mydata">
+		<div>
+			<ul class="progressbar">
+				<li class="active">Step 1</li>
+				<li class="active">Step 2</li>
+				<li class="doing">Step 3</li>
+				<li>Step 4</li>
+			</ul>
+		</div>
+	</div>	
 </div>

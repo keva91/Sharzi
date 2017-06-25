@@ -19,18 +19,17 @@ export class TdbComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("Ok ta mére");
-
     return this.testsuivi();
   }
 
   testsuivi(){
     this.loading = true;
-      console.log("yo timeout")
        let headers = new Headers();
        this.http.get('http://localhost:3000/tdb').map(res => res.json()).subscribe(data =>{
-         console.log(data)
-         return this.mydata = data;
+         //console.log(data)
+         this.mydata = data;
+         console.log(this.mydata)
+         return this.mydata;
        })
    
   }

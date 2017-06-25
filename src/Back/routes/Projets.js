@@ -4,7 +4,9 @@ var app = require('../server');
 var Projet=require('../models/Projet');
 var Jalon_Projet = require('../models/Jalon_Projet');
 var Jalon = require('../models/Jalon');
-	
+
+var async = require('async');
+
 app.get('/tdb',function(req,res,next)
 {
     /*var tdbResultat;
@@ -40,70 +42,72 @@ app.get('/tdb',function(req,res,next)
             res.json(rowsJ);
         });*/
 
-        console.log("Ta mére");
+    console.log("Dans le back")
+
     var jalon;
     var projet;
     var jalon_projet;
     
-    Projet.ObtTsProjets(function(err,rowsP)
-    { 	
-        console.log("Resultats Projet : ");
-        console.log(rowsP);
-        console.log("---------------------------------");
-        projet = rowsP;
+    async.parallel([
+        function(callback) {        
+            
+            Projet.ObtTsProjets(function(errP,rowsP)
+            { 	
+                /*console.log("Resultats Projet : ");
+                console.log(rowsP);
+                console.log("---------------------------------");*/
+                projet = rowsP;
+
+                return callback(errP, rowsP);
+            });
+        },
+        function(callback) {    
+            Jalon_Projet.ObtJalon_Projet(function(errJP,rowsJP)
+            { 	
+                /*console.log("Resultats Jalon_Projets : ");
+                console.log(rowsJP);
+                console.log("---------------------------------");*/
+                jalon_projet = rowsJP;
+
+                return callback(errJP, rowsJP);
+            });
+        },
+        function(callback) {
+            Jalon.ObtTsJalons(function(errJ,rowsJ)
+            {
+                /*console.log("Resultats Jalon : ");
+                console.log(rowsJ);
+                console.log("---------------------------------");*/
+                jalon = rowsJ;
+
+                return callback(errJ, rowsJ);
+            });
+        }
+    ], function(error, callbackResults) {
+        if (error) {
+            //handle error
+            console.log('callback error');
+            console.log(error);
+        } else {
+            /*console.log("--------------result jalon_projet-------------------");
+            console.log(jalon_projet)
+
+            console.log("------------result projet-------------------");
+            console.log(projet)
+
+            console.log("--------------result jalon-------------------");
+            console.log(jalon)
+
+            console.log("--------------result callbackResults-------------------");
+            console.log("--------------result rows 1-------------------");
+            console.log(callbackResults[0]); // rows1
+            console.log("--------------result rows 2-------------------");
+            console.log(callbackResults[1]); // rows2*/
+            // use this data to send back to client etc.
+
+            return callbackResults;
+        }
     });
-
-    Jalon_Projet.ObtJalon_Projet(function(err,rowsJP)
-    { 	
-        console.log("Resultats Jalon_Projets : ");
-        console.log(rowsJP);
-        console.log("---------------------------------");
-        jalon_projet = rowsJP;
-    });
-
-    Jalon.ObtTsJalons(function(err,rowsJ)
-    {
-        console.log("Resultats Jalon : ");
-        console.log(rowsJ);
-        console.log("---------------------------------");
-        jalon = rowsJ;
-    });
-
-
-
-    /*setTimeout(function()
-    {
-         for (r1 in groupe)
-         {
-             for(r2 in projet)
-             {
-                 if(groupe[r1].idProjet == projet[r2].idP)
-                 {
-                     var a = JSON.stringify(groupe[r1]).substring(0,JSON.stringify(groupe[r1]).length-1) + ",";
-                     var b = JSON.stringify(projet[r2]).substring(1,JSON.stringify(projet[r2]).length);
-                     var c ="";
-                   
-                     for(r3 in jalon_projet)
-                     {
-                         if(projet[r2].idP == jalon_projet[r3].idProjet)
-                         {
-                             b = JSON.stringify(projet[r2]).substring(1,JSON.stringify(projet[r2]).length-1) + ",";
-                             //c += JSON.stringify(jalon_projet[r3]).substring(1,JSON.stringify(jalon_projet[r3]).length-1) +",";
-                             c = JSON.stringify(jalon_projet[r3]).substring(1,21) + r3 
-                                 + JSON.stringify(jalon_projet[r3]).substring(21,JSON.stringify(jalon_projet[r3]).length-1) + ",";
-                         }
-
-                     }
-                     abc = a + b + c.substring(0,c.length-1) + " }";
-                     abc = JSON.parse(abc);
-                     console.log(abc);
-                     groupe[r1] = abc;
-                 }
-             }
-         }
-        
-        groupe = JSON.parse(JSON.stringify(groupe));
-     }, 2000);*/
   
 });
 
