@@ -7,6 +7,95 @@ body{
 .material-icons.md-light { color:#777777; }
 .material-icons.md-lightblue { color:rgba(30, 109, 210, 0.73); }
 
-.snackbarCustom{
+.material-icons.md-darkblue { color:rgba(2, 48, 97, 0.71); }
+
+
+
+.snackbarError{
     background-color:  red!important;
+}
+
+.snackbarSuccess{
+    background-color:  green!important;
+}
+
+.required_input{
+    position: relative;
+    top: 23px;
+    color: red
+}
+
+.required{
+    margin: 10px 0;
+    color: red
+}
+
+.required_date{
+    position: relative;
+    left: 45px;
+    color: red
+}
+
+
+.datepicker_nomargin{
+    margin: 0px !important;
+}
+
+h3:first-child{
+    margin: calc(2rem - .14285em) 0 1rem;
+}
+
+.menu_font{
+    font-family: Lato,'Helvetica Neue',Arial,Helvetica;
+}
+
+.icon_menu{
+    margin: 0px 15px 0px 10px!important;
+    padding: 0px!important;
+}
+
+
+
+.detail_Title{
+    font-size: 14px;
+    color: rgba(0,0,0,.54);
+}
+
+md-list-item:hover{
+    background:rgba(88, 103, 154, 0.25)!important;
+}
+
+md-list-item:focus{
+
+    outline:none!important;
+}
+
+.mat-list-icon{
+    padding: 0px!important;
+}
+
+.myChipsGreen{
+    border: 1px solid rgba(168, 185, 168, 0.23);
+    background: rgba(0, 121, 0, 0.76);
+    color: white;
+    border-radius: 6px;
+    box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);
+}
+
+.myChipsRed{
+    border: 1px solid rgba(226, 106, 106, 0.53); 
+    background: rgba(177, 1, 1, 0.73);
+    color: white;
+    border-radius: 6px;
+    box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);
+
+}
+
+.myChipsfutur{
+    border: 1px solid rgba(90, 90, 90, 0);
+    background: rgba(90, 90, 90, 0.81);
+    color: white;
+    border-radius: 6px;
+    box-shadow: 1px 1px 7px 1px rgba(128, 128, 128, 0.62);
+    
 }

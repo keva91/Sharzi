@@ -3,41 +3,71 @@
 <div fxLayout="column"  fxFlex="15" fxLayoutAlign="start stretch" class="mat-elevation-z6" style="background-color:rgb(84, 144, 255);z-index:10;">
 
   <div fxLayout="row" fxLayoutAlign="center">
-    <img [src]="'src/app/image/sharzilogo2w.png'" style="height:150px;width:150px;" />
+    <img [src]="'assets/image/sharzilogo2w.png'" style="height:150px;width:150px;" />
   </div>
 
   <div >
     <md-nav-list >
       <md-list-item [routerLink]="['/homeEnseignant/projets']" >
-        <h4 md-line >Projets</h4>
+    
+        <div fxLayout="row" fxLayoutAlign="center center">
+        
+          <md-icon md-list-icon  class="md-darkblue icon_menu">folder</md-icon>
+          <div class="menu_font" md-line>Projets</div>
+
+        </div>
       </md-list-item>
     </md-nav-list>
   </div>
   <div>
     <md-nav-list  >
       <md-list-item [routerLink]="['/homeEnseignant/groupes']" >
-        <h4 md-line>Groupes</h4>
+    
+        <div fxLayout="row" fxLayoutAlign="center center">
+        
+          <md-icon md-list-icon  class="md-darkblue icon_menu">group</md-icon>
+          <div class="menu_font" md-line>Groupes</div>
+
+        </div>
       </md-list-item>
     </md-nav-list>
   </div>
   <div>
     <md-nav-list  >
       <md-list-item [routerLink]="['/homeEnseignant/notes']" >
-        <h4 md-line>Notes</h4>
+      
+        <div fxLayout="row" fxLayoutAlign="center center">
+        
+          <md-icon md-list-icon  class="md-darkblue icon_menu">create</md-icon>
+          <div class="menu_font" md-line>Notes</div>
+
+        </div>
       </md-list-item>
     </md-nav-list>
   </div>
   <div>
     <md-nav-list  >
       <md-list-item [routerLink]="['/homeEnseignant/jalons']" >
-        <h4 md-line>Jalons</h4>
+      
+        <div fxLayout="row" fxLayoutAlign="center center">
+        
+          <md-icon md-list-icon  class="md-darkblue icon_menu">description</md-icon>
+          <div class="menu_font" md-line>Jalons</div>
+
+        </div>
       </md-list-item>
     </md-nav-list>
   </div>
   <div>
     <md-nav-list  >
       <md-list-item [routerLink]="['/homeEnseignant/tdb']" >
-        <h4 md-line>Tableau de bord</h4>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        
+        <md-icon md-list-icon  class="md-darkblue icon_menu">developer_board</md-icon>
+        <div class="menu_font" md-line>Tableau de bord</div>
+
+      </div>
+        
       </md-list-item>
     </md-nav-list>
   </div>
@@ -46,16 +76,13 @@
 
   <div fxLayout="column" fxFlex >
     <md-toolbar class="mat-elevation-z2" style="background-color:rgb(84, 144, 255)">
-      <span>Second Line</span>
+      <span>Bonjour enseignant</span>
       <span fxFlex></span>
       <md-icon class="example-icon">account_circle</md-icon>
     </md-toolbar>
 
-    <div fxFlex fxLayout="column" fxLayoutAlign="start "  style="padding:0 50px">
+    <div fxFlex fxLayout="column" fxLayoutAlign="start "  style="padding: 24px 57px;">
 
-    
-
-     <h3 >Accueil Enseignant</h3>
 
      <router-outlet></router-outlet>
 

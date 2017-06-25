@@ -19,13 +19,18 @@ var Jalon_Projet={
 
     ObtJalon_ProjetParIdProjet:function(id,callback)
     {
-         return db.query("select * from Jalon_Projet where idProjet=?",[id],callback);
+         return db.query("select * from Jalon_Projet where idProjetJP=?",[id],callback);
+    },
+    ObtFullJalon_ProjetParIdProjet:function(id,callback)
+    {
+         return db.query("select idJalonJP,commentaireJP,NoteJP,idEtatJP,idJ,nomJ,descrJ,date_debutJ,date_finJ "
+           +"from Jalon_Projet,jalon where idProjetJP=? and idJ=idJalonJP",[id],callback);
     },
 
     ObtNbMaxJalons_Projet:function(callback)
      {
          return db.query("SELECT MAX(JProjet) AS JProjet FROM (select count(*) as JProjet "
-                + "from Jalon_Projet group by idProjet)JProjet;", callback);
+                + "from Jalon_Projet group by idProjetJP)JProjet;", callback);
      },
       
     ObtNoteDeTsJalon_Projets:function(callback)
@@ -33,16 +38,21 @@ var Jalon_Projet={
          return db.query("Select idProjetJP, noteJP from Jalon_Projet order by idProjetJP", callback);
     },
   
-    ajouterJalon_Projet:function(Jalon_Projet,callback)
+    ajouterJalon_Projet:function(data,callback)
     {
-         return db.query("Insert into Jalon_Projets_Projet values(?,?,?,?)",
-         [idProjet, Jalon_Projets_Projet.commentaireJP, Jalon_Projets_Projet.rapportAdr, Jalon_Projets_Projet.NoteJP],callback);
+         return db.query("Insert into Jalon_Projet (idJalonJP, idProjetJP) values ?",
+         [data],callback);
     },
 
     modifierJalon_Projet:function(id,Jalon_Projet,callback)
     {
          return  db.query("update Jalon_Projets_Projet set commentaireJ=?, rapportAdr=? noteJP=? where idJalon_Projet=?",
              [Jalon_Projets_Projet.commentaireJP, Jalon_Projets_Projet.rapportAdr, Jalon_Projets_Projet.NoteJP, id],callback);
+    },
+    modifierNoteJalon_Projet:function(data,callback)
+    {
+         return  db.query("update Jalon_Projet set NoteJP=? where idJalonJP=?",
+             [data.note,data.id],callback);
     },
     
     supprimerJalon_Projet:function(id,callback)

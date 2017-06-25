@@ -1,0 +1,74 @@
+<div>
+          
+  
+<md-card class="example-card" style="padding: 15px 27px;">
+  <h3> 
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <md-icon md-list-icon style="margin:10px" class="md-lightblue">folder</md-icon> Projet
+    </div>  
+    <md-divider></md-divider> 
+  </h3>
+    
+  <md-card-header fxLayout="row" fxLayoutAlign="start start">
+    <div fxFlex="22" fxLayout="column" fxLayoutAlign="start"  fxLayoutGap="10px" >
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxFlex="22" class="detail_Title">Nom : </div>
+        <div>{{projet.nomP}}</div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" >
+        <div fxFlex="22" class="detail_Title" >Date : </div>
+        <div>{{projet.date_finP  | date}}</div>
+      </div>
+      
+    </div>
+
+    <div fxLayout="row" fxFlex fxLayoutAlign="start start" fxLayoutGap="10px" style="padding-left: 34px;">
+    
+      <div fxFlex="13" class="detail_Title" >Description : </div>
+      <p>
+        {{projet.descrP}}
+      </p>
+      
+    </div>
+  </md-card-header>
+
+  <md-card-content style="margin:20px 0 0 0  !important;">
+    <h3 style="margin: 0;"> 
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <md-icon md-list-icon style="margin:10px" class="md-lightblue">description</md-icon> Jalons
+      </div>  
+      <md-divider></md-divider> 
+    </h3>
+   
+
+    <p>
+      <md-nav-list style="max-height: 214px;overflow: auto;">
+        <md-list-item  *ngFor="let jalon of jalons"  >
+          <div fxFill fxLayout="row" fxLayoutAlign="start center" style="padding:20px 0;">
+            <div fxFlex="90" fxLayout="row"  fxLayoutAlign="start center" (click)="detailJalon(jalon)">
+              <md-icon md-list-icon style="margin:10px" class="md-lightblue">description</md-icon>
+              <div fxFlex="20" >{{jalon.nomJ}}</div>
+              <div fxFlex="20"> {{jalon.date_finJ | date}} </div>
+              <div fxFlex></div>
+              <div fxFlex="20"  [ngClass]="{'myChipsRed': jalon.idEtatJP == 'EN COURS', 'myChipsGreen': jalon.idEtatJP == 'FINI', 'myChipsfutur': jalon.idEtatJP == 'EN ATTENTE'}" class="myChipsRed" fxLayout="row" fxLayoutAlign="center"> {{jalon.idEtatJP}} </div>
+              <div fxFlex></div>
+            </div>
+            <div fxLayout="row">
+                <button  (click)="NoterJalon()" mdTooltip="Noter" mdTooltipPosition="before" md-button> <i class="material-icons md-light ">create</i></button>
+            </div>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+      </md-nav-list>
+    </p>
+  </md-card-content>
+
+  <md-card-actions>
+    <button (click)="callback.cancel()"  md-button> <i class="material-icons md-light ">undo</i>Retour</button>
+    <button (click)="callback.cancel()"  md-button> <i class="material-icons md-light ">tune</i>Modifier</button>
+  </md-card-actions>
+</md-card>
+    
+
+</div>
