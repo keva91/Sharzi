@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {Http, Headers} from '@angular/http'
+import {MdSnackBar,MdDialog} from '@angular/material';
+import{EnsProjetDeleteComponent} from '../ens-projet/ens-projet-delete/ens-projet-delete.component' ;
 
 @Component({
   selector: 'app-ens-projet',
@@ -9,7 +11,9 @@ import {Http, Headers} from '@angular/http'
 })
 export class EnsProjetComponent implements OnInit {
 
-  constructor(private http: Http) { }
+  constructor(
+    private http: Http,
+    public dialog: MdDialog) { }
 
   selectedTab = 0;
   listProjets  = [];
@@ -38,6 +42,18 @@ export class EnsProjetComponent implements OnInit {
     })
   }
 
+  getOneProjet(projetId){
+    console.log(projetId)
+    console.log('in get one ')
+    let headers = new Headers();
+    console.log('just before get')
+    this.http.get('http://localhost:3000/projet/'+projetId).map(res => res.json()).subscribe(data =>{
+      console.log(data);
+      this.projetSelected = data[0];
+
+    })
+  }
+
 
 
 
@@ -53,16 +69,28 @@ export class EnsProjetComponent implements OnInit {
   }
 
   callbacksFunctions =  { 
-    cancel : this.cancel.bind(this)
+    cancel : this.cancel.bind(this),
+    editprojet : this.editProjet.bind(this)
     
   }
 
-  cancel(res){
+  cancel(res,from){
     if(res){
       this.getProjets();
     }
-    this.tabs.splice(1, 1,);
+
+    if(this.tabs.length > 2 ){
+      if(from && from == 'edit'){
+        this.getOneProjet(res);
+      }
+      this.tabs.splice(2, 1,);
+
+    }else{
+      this.tabs.splice(1, 1,);
+    }
   }
+
+
     
 
   addProjet(){
@@ -70,6 +98,20 @@ export class EnsProjetComponent implements OnInit {
       this.tabs.push({ title: 'Creation Projet', type: 'creationProjet'});
       this.selectedTab = 1;
     }    
+  }
+
+  editProjet(projet){
+    console.log('in edit')
+    console.log(projet)
+    this.projetSelected = projet;
+    this.tabs.push({ title: 'Edition Projet', type: 'editionProjet'});
+      
+       
+    if(this.tabs.length > 1){
+      this.selectedTab = 2;
+    }else{
+      this.selectedTab = 1;
+    }
   }
 
   addJalon(){
@@ -86,6 +128,26 @@ export class EnsProjetComponent implements OnInit {
       this.tabs.push({ title: 'Detail Projet', type: 'detailProjet'});
       this.selectedTab = 1;
     } 
+  }
+
+  deleteProjet(projet){
+    let dialogRef = this.dialog.open(EnsProjetDeleteComponent, {
+      
+      width: '400px',
+      data: projet.idP
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          //this.dialog = null;
+          console.log(result)
+          if(result){
+            //this.refreshJalons();
+            console.log('supp')
+            this.getProjets()
+          }else{
+            console.log('nop')
+          }
+    });
+
   }
 
 

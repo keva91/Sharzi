@@ -51,7 +51,8 @@
               <div fxFlex="20" >{{jalon.nomJ}}</div>
               <div fxFlex="20"> {{jalon.date_finJ | date}} </div>
               <div fxFlex></div>
-              <div fxFlex="20"  [ngClass]="{'myChipsRed': jalon.idEtatJP == 'EN_COURS', 'myChipsGreen': jalon.idEtatJP == 'FINI', 'myChipsfutur': jalon.idEtatJP == 'EN_ATTENTE'}" class="myChipsRed" fxLayout="row" fxLayoutAlign="center"> {{jalon.idEtatJP}} </div>
+              <div fxFlex="20"  [ngClass]="{'myChipsblue': jalon.idEtatJP == 'EN_COURS', 'myChipsGreen': jalon.idEtatJP == 'FINI', 'myChipsfutur': jalon.idEtatJP == 'EN_ATTENTE'}" class="myChipsRed" fxLayout="row" fxLayoutAlign="center"> {{jalon.idEtatJP}} </div>
+           
               <div fxFlex></div>
             </div>
             <div fxLayout="row">
@@ -66,7 +67,7 @@
 
   <md-card-actions>
     <button (click)="callback.cancel()"  md-button> <i class="material-icons md-light ">undo</i>Retour</button>
-    <button (click)="callback.cancel()"  md-button> <i class="material-icons md-light ">tune</i>Modifier</button>
+    <button (click)="callback.editprojet(projet)"  md-button> <i class="material-icons md-light ">tune</i>Modifier</button>
   </md-card-actions>
 </md-card>
     

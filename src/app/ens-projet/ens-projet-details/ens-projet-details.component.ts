@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,OnChanges,Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import {Http, Headers} from '@angular/http';
 import {MdSnackBar,MdDialog} from '@angular/material';
@@ -9,7 +9,7 @@ import{EnsJalonDetailComponent} from '../../ens-jalons/ens-jalon-detail/ens-jalo
   templateUrl: './ens-projet-details.component.html',
   styleUrls: ['./ens-projet-details.component.css']
 })
-export class EnsProjetDetailsComponent implements OnInit {
+export class EnsProjetDetailsComponent implements OnInit,OnChanges {
 
   @Input() callback;
   @Input() jalons;
@@ -22,6 +22,16 @@ export class EnsProjetDetailsComponent implements OnInit {
 
 
   ngOnInit() {
+    console.log(this.projet);
+  }
+
+  ngOnChanges(changes) {
+      console.log(changes);
+      
+      if(this.projet && changes.projet){
+        this.projet = changes.projet.currentValue;
+      }
+      
   }
 
   detailJalon(jalon){

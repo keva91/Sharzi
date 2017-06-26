@@ -71,54 +71,103 @@ app.get('/projet/:id?',function(req,res,next)
 {
     if(req.params.id)
     {
-        Projet.ObtIdProjet(req.params.id,function(err,rows)
+        Projet.ObtFullProjetById(req.params.id,function(err,rows)
         {
             if(err)
                 res.json(err);
             else
                 res.json(rows);
         });
-    }
-    else
-    {
-        Projet.ObtTsProjets(function(err,rows)
-        {
-            if(err)
-            res.json(err);
-            else
-            res.json(rows);
-        });
-    }
-});
-
-
-app.post('/projet/:id?',function(req,res,next)
-{
-    if(req.params.id){
-        Projet.modifierProjet(function(err,rows){
-            if(err)
-                res.json(err); 
-            else
-                res.json(rows);
-        });
-
     }else{
-        console.log(req.body)
-        Projet.ajouterProjet(req.body,function(err,rows){
-            if(err){
-                console.log('error')
+
+         Projet.ObtTsProjets(function(err,rows)
+        {
+            if(err)
                 res.json(err);
-            }else{
-                
-                res.json(rows.insertId);//or return count for 1 &amp;amp;amp; 0
-            }
-                
-                
-            
-                
+            else
+                res.json(rows);
         });
 
     }
     
+});
 
+
+
+
+
+app.post('/projet',function(req,res,next)
+{
+   
+    console.log(req.body)
+    Projet.ajouterProjet(req.body,function(err,rows){
+        if(err){
+            console.log('error')
+            res.json(err);
+        }else{
+            
+            res.json(rows.insertId);//or return count for 1 &amp;amp;amp; 0
+        }
+            
+    });
+
+});
+
+
+
+
+
+app.put('/projet/:id?',function(req,res,next)
+{
+    if(req.params.id){
+        Projet.modifierProjet(req.body,function(err,rows){
+            if(err){
+                console.log('error')
+                console.log(err)
+                res.json(err);
+            }else{
+                console.log('win')
+                res.json(rows);
+            }
+               
+        });
+
+    }else{
+        console.log('no Id');
+    }
+    
+
+});
+
+
+app.delete('/projet/:id?',function(req,res,next)
+{
+
+    console.log(req.params.id)
+    if(req.params.id)
+    {
+        Jalon_Projet.supprimerJalon_ProjetByProjetId(req.params.id,function(err,rows)
+        {
+            if(err){
+                console.log('err supp jP')
+                console.log(err)
+                res.json(err);
+            }else{
+                //res.json(rows);
+
+                Projet.supprimerProjet(req.params.id,function(err,rows){
+
+
+                    if(err){
+                        console.log('error supp projet')
+                        res.json(err);
+                    }else{
+                        res.json(rows);
+                    }
+
+                })
+            }
+        });
+    }
+    
 });
