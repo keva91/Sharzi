@@ -1,24 +1,16 @@
 <div>
-	<div *ngFor="let Projet of mydata[0]">
-		<h2>{{Projet.nomP}}</h2>
-		<ul class="progressbar"  *ngFor="let Jalon of mydata[1]">
-			<div class="{{Jalon.idEtatJP}}">
-				<li class="{{Jalon.idEtatJP}}" *ngIf="Jalon.idProjetJP == Projet.idP" (click)="detailJalon(Jalon)">
-					{{Jalon.nomJ}}
-				</li>
-			</div>
-		</ul>
-		<br/><br/><br/><br/><br/><br/>
-	</div>
+    <div *ngFor="let Projet of mydata[0]">
+        <h2>{{Projet.nomP}}</h2>
+        <ul class="progressbar"  *ngFor="let Jalon of mydata[1]">
+            <div class="{{Jalon.idEtatJP}}">
+                <li class="{{Jalon.idEtatJP}}" *ngIf="Jalon.idProjetJP == Projet.idP" (click)="detailJalon(Jalon)">
+                    {{Jalon.nomJ}}
+                </li>
+            </div>
+        </ul>
+        <br/><br/><br/><br/><br/><br/>
+    </div>
 </div>
 <script>
-	$("li.EN_COURS").nextAll().css("background-color", "rgba(90, 90, 90)")
+    $("li.EN_COURS").nextAll().css("background-color", "rgba(90, 90, 90)")
 </script>
-<!--<div>
-	<ul class="progressbar">
-		<li class="FINI">Step 1</li>
-		<li class="FINI">Step 2</li>
-		<li class="EN_COURS">Step 3</li>
-		<li class="EN_ATTENTE">Step 4</li>
-	</ul>
-</div>-->
