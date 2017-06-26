@@ -1,30 +1,30 @@
-<div>
-    <table>
-        <tbody>
-
-    <div fxLayout="column">
-        <div fxLayout="row"> 
-            GROUPE 
-            <div *ngFor="let item of createRange()"> JALON{{item}} </div>
-            PROJET
-        </div>  
-    </div>
-    <!--<div fxLayout="column" *ngFor=" mydata of mydata[1]">
-        <div fxLayout="row"> 
-            {{mydata.nomG}}
-            <div *ngFor=" jalon_projet of mydata.jalon_projets"> {{jalon_projet.note}} </div>
-            {{mydata.noteP}}
-        </div>-->
-    <!--</div>-->
-    <!--        <ng-container *ng-if!="tabnotejp(mydata.idG)=='true'">
-                <tr *ngFor="let mydata of mydata[1]">
-                    <td>{{mydata.nomG}}</td>
-                    <td *ng-if!="tabnotejp(mydata.idG)=='true'" *ngFor="mydata of mydata[1]"> {{mydata.noteJP}} </td>
-                    <td>{{mydata.noteP}}</td>
+    <div>
+        <table id="table" class="tabNotesSharzi">
+            <tbody>
+                <br/>
+                <br/>
+                <tr class="ligneTab">
+                    <th class="colTab">GROUPE</th>
+                    <th class="colTab" *ngFor="let item of createRange()"> JALON{{item}} </th>
+                    <th class="colTab">PROJET</th>
                 </tr>
-            </container-->
-         </tbody>
-    </table>
-</div>
+                <tr class="ligneTab" *ngFor="let groupe of mydata[1]">
+                    <td class="colTab"> {{groupe.nomG}} </td>
+                    <ng-container *ngFor="let jalon_projet of mydata[3]; let item = index">
+                        <td class="colTab" *ngIf="groupe.idProjetG == jalon_projet.idProjetJP"> {{jalon_projet.noteJP}}</td>
+                    </ng-container>
 
-<!-- bouton export -->
+                    <td class="colTab" *ngFor="let jalonRestant of nbJP(groupe.idProjetG)"></td>
+
+                    <ng-container *ngFor="let projet of mydata[2]">
+                        <td class="colTab" *ngIf="projet.idP == groupe.idProjetG"> {{projet.NoteP}} </td> 
+                    </ng-container>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br/>
+    <br/>
+
+        <p id="xportxlsx" class="xport"><input type="submit" value="Export to XLSX!" onclick="export_table_to_excel('table');"></p>

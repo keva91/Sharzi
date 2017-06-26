@@ -9,13 +9,13 @@ import {Http, Headers} from '@angular/http'
 })
 export class EnsNoteComponent implements OnInit {
 
-
   loading = false;
   mydata;
   maxJP;
   rangeMax;
   tabnotes;
-  dataTabNote;  
+  dataTabNote;
+  jalonP;  
 
   constructor(
     private router: Router,
@@ -25,6 +25,7 @@ export class EnsNoteComponent implements OnInit {
 
   ngOnInit() {
     return this.testnote();
+    
   }
 
    testnote(){
@@ -51,52 +52,57 @@ export class EnsNoteComponent implements OnInit {
         // console.log(data[1][0]);
         // console.log("--------- Tab 1 Ligne 0 NomG Data -------------");
         // console.log(data[1][0].nomG);
+       
+      this.maxJP = data[0][0].JProjet;
+      this.jalonP = data[3];
+      // console.log("------------ data[0] -------------");
+      // console.log(data[0]);
+  
+      // console.log("------------ data[1] -------------");
+      // console.log(data[1]);
+        
+      // console.log("------------ data[2] -------------");
+      // console.log(data[2]);
+ 
+      // console.log("------------ data[3] -------------");
+      // console.log(data[3]);
 
-       
-       this.maxJP = data[0][0].JProjet;
-       this.dataTabNote = data[1];
-       
+      //  this.dataTabNote = data[1];
+      //this.dataTabNote = data;
+
         //  return this.mydata = data[0].jalonProjet;
+
+
         return this.mydata = data;
 
      })
   }
+     nbJP(groupeactuel){
+       var nbjalonProjetGr = 0;
+       var tdrestant = [];
 
-    createRange(){
-    var number = this.maxJP;
-    this.rangeMax = [];
-    for(var i = 1; i <= number; i++){
-       this.rangeMax.push(i);
-    }
-    return this.rangeMax;
-  }
+       this.jalonP.forEach(element => {
+         if(element.idProjetJP==groupeactuel)
+         {
+            nbjalonProjetGr++;
+         }
+       });
 
-grprecedent = null;
-gractuel = null;
+       var restant=this.maxJP-nbjalonProjetGr;
+       while(restant>0)
+       {
+            tdrestant.push(nbjalonProjetGr);
+            restant--;
+       }
+       return tdrestant;
+     }
 
-  // tabnotejp(dataTab){
-  //   var number = this.maxJP;
-  //   this.tabnotes = [];
-  //   for( this.dataTabNote in this.dataTabNote)
-  //   {
-  //     if (this.verifgroupelist(dataTab) == true)
-  //      {
-  //        this.tabnotes.push(this.dataTabNote.noteJP);
-  //      }
-  //   }
-  //   return this.tabnotes;
-  // }
-  //     verifgroupelist(identifiantG){
-  //      this.gractuel = identifiantG.idG;
-  //      if(this.grprecedent==null || this.grprecedent != this.gractuel)
-  //      {
-  //        this.grprecedent = this.gractuel;
-  //        return true;
-  //      }
-  //      else 
-  //     {
-  //       return false;
-  //     }
-  //   }
-
+     createRange(){
+     var number = this.maxJP;
+     this.rangeMax = [];
+     for(var i = 1; i <= number; i++){
+        this.rangeMax.push(i);
+     }
+     return this.rangeMax;
+   }
 }

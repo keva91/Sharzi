@@ -9,14 +9,13 @@ var Note = require('../models/Note');
 
 var async = require('async');
 
- app.get('/note',function(req,res,next){ 
+app.get('/note',function(req,res,next){ 
 
-     var tabNotes;
-     var nbMaxJP;
+     var tabNotes = new Array();
+     var nbJPmax;
      var groupe;
      var projet;
-     var jalon_projet;
-     //console.log('in route note')
+     var jalon_projet = [];
 
      async.parallel([
 
@@ -28,11 +27,11 @@ var async = require('async');
                      //console.log(rows)
                   }
                  else
-                {
+                 {
                       //console.log('empty Jalon_Projet ')
                  }
 
-                 nbMaxJP = rows;
+                 nbJPmax = rows;
 
                  return callback(err, rows);
 
@@ -64,19 +63,19 @@ var async = require('async');
                  }else{
                      //console.log('empty Projets ')
                  }
-                
+               
                  projet = rows2;
                  return callback(err2, rows2);
              });
          },
          function(callback) {
-          
+            
              Jalon_Projet.ObtNoteDeTsJalon_Projets(function(err3,rows3){
                  if(rows3){
                      //console.log("Resultats Projets jalon : ");
                      //console.log(rows3)
                  }else{
-                    //console.log('empty projet jalon')
+                     //console.log('empty projet jalon')
                  }
                  //console.log("---------------------------------");
                 
@@ -99,49 +98,15 @@ var async = require('async');
              //  console.log("--------------result groupe-------------------");
              //  console.log(groupe)
 
-             //console.log("--------------result callbackResults-------------------");
-             // console.log(callbackResults[1]); // rows2
-             // console.log(callbackResults[1][0]); // rows2
-             // console.log(callbackResults[1][0].idP); // rows2
+            //console.log("--------------result callbackResults-------------------");
+            //console.log(JSON.parse(JSON.stringify(callbackResults))); // rows2
+            //console.log(callbackResults[1][0]); // rows2
+            //console.log(callbackResults[1][0].idP); // rows2
 
-         for (r1 in groupe)
-          {  
-              for(r2 in projet)
-              {
-                  if(groupe[r1].idProjetG == projet[r2].idP)
-                  {
-                      var a = JSON.stringify(groupe[r1]).substring(0,JSON.stringify(groupe[r1]).length-1) + ",";
-                      var b = JSON.stringify(projet[r2]).substring(1,JSON.stringify(projet[r2]).length);
-                      var c ="";
-                      var i=0;
-
-                      for(r3 in jalon_projet)
-                      {
-                          if(projet[r2].idP == jalon_projet[r3].idProjetJP)
-                          {
-                              b = JSON.stringify(projet[r2]).substring(1,JSON.stringify(projet[r2]).length-1) + ",";
-                                c += JSON.stringify(jalon_projet[r3]).substring(1,23) + i
-                                    + JSON.stringify(jalon_projet[r3]).substring(23,JSON.stringify(jalon_projet[r3]).length-1) + ",";
-                                    i++;
-                          }
-                      }
-
-                      abc = a + b + c.substring(0,c.length-1) + " }";
-                      abc = JSON.parse(JSON.stringify([abc]));
-                      groupe[r1] = abc;
-                  }
-              }
-          }
-
-          nbMaxJP = JSON.parse(JSON.stringify(nbMaxJP));
-          tabNotes = JSON.parse(JSON.stringify([nbMaxJP, groupe]));
-          console.log(tabNotes);
-          
-          res.send(tabNotes);
+          res.send(callbackResults);
          }
      });
  });
- //module.exports=Groupe;
 
 router.get('/:id?',function(req,res,next)
 {
@@ -175,7 +140,6 @@ router.get('/:id?',function(req,res,next)
     }
 });
 
-
 router.post('/GroupAjout',function(req,res,next)
 {
     Groupe.ajouterGroupe(req.body,function(err,count)
@@ -200,6 +164,4 @@ router.post('/GroupAjout',function(req,res,next)
          else
              res.json(count);
      });
-
-
 });

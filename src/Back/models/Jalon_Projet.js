@@ -28,11 +28,11 @@ var Jalon_Projet={
            +"from Jalon_Projet,jalon where idProjetJP=? and idJ=idJalonJP",[id],callback);
     },
 
-    ObtFullJalon_Projet:function(callback)
+   ObtFullJalon_Projet:function(callback)
     {
          return db.query("select idJalonJP, idProjetJP,commentaireJP,NoteJP,idEtatJP,idJ,nomJ,descrJ,date_debutJ,date_finJ "
            +"from Jalon_Projet,jalon where idJ=idJalonJP",callback);
-    },
+    },  
 
     ObtNbMaxJalons_Projet:function(callback)
      {
