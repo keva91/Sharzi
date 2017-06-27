@@ -6,13 +6,13 @@ Application développé à l'aide du framework Angular2 développée par Google,
 
 Cette application permet de faire de la gestion de projet pour les enseignants.
 
-##Installation :
+## Installation :
 
 Cloner ce repository sur votre poste.
 
 Installer les dépendances NodeJS en lançant la commande npm install dans le projet.
 
-##Lancer le projet:
+## Lancer le projet:
 
 Pour le client Angular 2, aller à la racine du projet et lancer 'ng serve' 
 
