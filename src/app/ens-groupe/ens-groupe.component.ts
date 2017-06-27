@@ -23,6 +23,7 @@ export class EnsGroupeComponent implements OnInit {
   listProjets  = [];
   listEtudiants  = [];
 
+  disabled = false;
 
  
 
@@ -49,6 +50,7 @@ export class EnsGroupeComponent implements OnInit {
       this.getGroupes();
     }
     this.tabs.splice(1, 1,);
+    this.disabled = false
   }
 
 
@@ -86,7 +88,9 @@ export class EnsGroupeComponent implements OnInit {
     if(!(this.tabs.length > 1) ){
       this.tabs.push({ title: 'Creation Groupe', type: 'creationGroupe'});
       this.selectedTab = 1;
-    }    
+      this.disabled = true;
+    }   
+     
   }
 
 
@@ -97,6 +101,7 @@ export class EnsGroupeComponent implements OnInit {
         this.groupeSelected = groupe
         this.tabs.push({ title: 'Detail groupe', type: 'detailGroupe'});
         this.selectedTab = 1;
+        this.disabled = true;
       } 
   }
 

@@ -17,6 +17,7 @@ constructor(
 
   selectedTab = 0;
   jalonSelected = null;
+  disabled = false
 
   listJalons  = [];
   listProjets  = [];
@@ -73,9 +74,11 @@ constructor(
         console.log('edit')
       }
       this.tabs.splice(2, 1,);
+      this.disabled = false
 
     }else{
       this.tabs.splice(1, 1,);
+      this.disabled = false
     }
   }
 
@@ -85,7 +88,8 @@ constructor(
     if(!(this.tabs.length > 1) ){
       this.tabs.push({ title: 'Creation Jalon', type: 'creationJalon'});
       this.selectedTab = 1;
-    }    
+    }   
+    this.disabled = true; 
   }
 
 
@@ -100,6 +104,7 @@ constructor(
     }else{
       this.selectedTab = 1;
     }    
+    this.disabled = true; 
   }
 
    detailJalon(jalon){
@@ -109,6 +114,7 @@ constructor(
         this.tabs.push({ title: 'Detail Jalon', type: 'detailJalon'});
         this.selectedTab = 1;
       } 
+      this.disabled = true; 
     }
 
 

@@ -12,7 +12,7 @@
     
     <md-card-content>
       <md-tab-group dynamicHeight [(selectedIndex)]="selectedTab">
-        <md-tab *ngFor="let tab of tabs" [label]="tab.title">
+        <md-tab  *ngFor="let tab of tabs" [label]="tab.title" [disabled]="disabled && (tab.type == 'list' || tab.type == 'detailProjet' && tabs.length > 2)">
           <div [ngSwitch]="tab.type">
             <div *ngSwitchCase="'list'" style="max-height: 435px;padding: 10px 30px;overflow: auto;">
             

@@ -20,6 +20,8 @@ export class EnsProjetComponent implements OnInit {
   listJalons  = [];
   projetSelected = null;
 
+  disabled = false;
+
 
   tabs = [
           { title: 'Liste Projets', type: "list"}
@@ -84,9 +86,11 @@ export class EnsProjetComponent implements OnInit {
         this.getOneProjet(res);
       }
       this.tabs.splice(2, 1,);
+      this.disabled = false;
 
     }else{
       this.tabs.splice(1, 1,);
+      this.disabled = false;
     }
   }
 
@@ -97,7 +101,8 @@ export class EnsProjetComponent implements OnInit {
     if(!(this.tabs.length > 1) ){
       this.tabs.push({ title: 'Creation Projet', type: 'creationProjet'});
       this.selectedTab = 1;
-    }    
+    } 
+     this.disabled = true;   
   }
 
   editProjet(projet){
@@ -112,6 +117,7 @@ export class EnsProjetComponent implements OnInit {
     }else{
       this.selectedTab = 1;
     }
+     this.disabled = true;
   }
 
   addJalon(){
@@ -128,6 +134,7 @@ export class EnsProjetComponent implements OnInit {
       this.tabs.push({ title: 'Detail Projet', type: 'detailProjet'});
       this.selectedTab = 1;
     } 
+     this.disabled = true;
   }
 
   deleteProjet(projet){
