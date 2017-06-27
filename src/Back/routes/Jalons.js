@@ -69,7 +69,7 @@ app.post('/jalon',function(req,res,next)
             console.log('ok creation jalon')
 
             var idProjet = row.insertId;
-            var etat = 'EN ATTENTE'
+            var etat = 'EN_ATTENTE'
 
             var tableauFormaté = req.body.list.map(function(item){ 
                 var smallTab = [];

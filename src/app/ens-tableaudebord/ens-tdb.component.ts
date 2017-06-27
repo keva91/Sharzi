@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import {Http, Headers} from '@angular/http'
+import {Http, Headers} from '@angular/http';
+import {MdSnackBar,MdDialog} from '@angular/material';
+import{EnsJalonDetailComponent} from '../ens-jalons/ens-jalon-detail/ens-jalon-detail.component' ;
 
 @Component({
   selector: 'app-tdb',
@@ -14,12 +16,27 @@ export class TdbComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private http: Http
+    private http: Http,
+    public dialog: MdDialog
   ){
   }
 
   ngOnInit() {
     return this.testsuivi();
+  }
+
+  detailJalon(jalon){
+    let dialogRef = this.dialog.open(EnsJalonDetailComponent, {
+      width: '600px',
+      data: jalon
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          //this.dialog = null;
+          console.log(result)
+          if(result){
+            //this.refreshJalons();
+          }
+    });
   }
 
   testsuivi(){

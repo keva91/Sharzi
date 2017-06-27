@@ -9,39 +9,6 @@ var async = require('async');
 
 app.get('/tdb',function(req,res,next)
 {
-    /*var tdbResultat;
-
-    Projet.ObtTsProjets(function(err,rowsP)
-    {
-
-       if(err)
-       {
-           res.send(err);
-       } 
-       else
-       {
-           //res.send(rows);
-
-           tdbResultat = rowsP;
-       }
-    });
-
-    Jalon_Projet.ObtJalon_Projet(req.params,function(err,rowsJP)
-        {
-            if(err)
-            res.json(err);
-            else
-            res.json(rowsJP);
-        });
-
-    Jalon.ObtTsJalons(function(err,rowsJ)
-        {
-            if(err)
-            res.json(err);
-            else
-            res.json(rowsJ);
-        });*/
-
     console.log("Dans le back")
 
     var jalon;
@@ -62,7 +29,7 @@ app.get('/tdb',function(req,res,next)
             });
         },
         function(callback) {    
-            Jalon_Projet.ObtJalon_Projet(function(errJP,rowsJP)
+            Jalon_Projet.ObtFullJalon_Projet(function(errJP,rowsJP)
             { 	
                 /*console.log("Resultats Jalon_Projets : ");
                 console.log(rowsJP);
@@ -70,17 +37,6 @@ app.get('/tdb',function(req,res,next)
                 jalon_projet = rowsJP;
 
                 return callback(errJP, rowsJP);
-            });
-        },
-        function(callback) {
-            Jalon.ObtTsJalons(function(errJ,rowsJ)
-            {
-                /*console.log("Resultats Jalon : ");
-                console.log(rowsJ);
-                console.log("---------------------------------");*/
-                jalon = rowsJ;
-
-                return callback(errJ, rowsJ);
             });
         }
     ], function(error, callbackResults) {

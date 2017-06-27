@@ -11,6 +11,10 @@ var Groupe={
     {
         return db.query("select * from Groupe where idG=?",id, callback);
     },
+    ObtTsGroupes:function(callback)
+    {
+        return db.query("Select idG, nomG, idProjetG from Groupe order by idG", callback);
+    },
 
     ObtFullGroupes:function(callback)
     {
