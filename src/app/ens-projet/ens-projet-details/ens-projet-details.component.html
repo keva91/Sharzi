@@ -54,9 +54,7 @@
               <div fxFlex="20"  [ngClass]="{'myChipsblue': jalon.idEtatJP == 'EN COURS', 'myChipsGreen': jalon.idEtatJP == 'FINI', 'myChipsfutur': jalon.idEtatJP == 'EN ATTENTE'}" class="myChipsRed" fxLayout="row" fxLayoutAlign="center"> {{jalon.idEtatJP}} </div>
               <div fxFlex></div>
             </div>
-            <div fxLayout="row">
-                <button  (click)="NoterJalon()" mdTooltip="Noter" mdTooltipPosition="before" md-button> <i class="material-icons md-light ">create</i></button>
-            </div>
+            
           </div>
           <md-divider></md-divider>
         </md-list-item>

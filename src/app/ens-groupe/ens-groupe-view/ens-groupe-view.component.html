@@ -1,0 +1,51 @@
+<h3> 
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <md-icon md-list-icon style="margin:10px" class="md-lightblue">group</md-icon> Groupe
+  </div>  
+  <md-divider></md-divider> 
+</h3>
+
+  
+  <div style="margin: 0px 0 35px 0!important;">
+
+    <md-card-header fxFill fxLayout="row" fxLayoutAlign="start start" >
+      <div fxFlex="20" fxLayout="column" fxLayoutAlign="center start"  fxLayoutGap="10px" >
+        <div fxFill fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div fxFlex="20" class="detail_Title">Nom : </div>
+          <div>{{groupe.nomG}}</div>
+        </div>
+
+        <div fxFill fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" >
+          <div fxFlex="24" class="detail_Title" >Projet : </div>
+          <div>{{groupe.nomP}}</div>
+        </div>
+        
+      </div>
+
+      <div fxFlex="40" fxLayout="column"  fxLayoutAlign="start start" fxLayoutGap="10px" style="padding-left: 34px;">
+      
+        <div fxFill fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div fxFlex="40" class="detail_Title" >Nombre de pers max : </div>
+          <p>
+            {{groupe.nbIntervenantG}}
+          </p>
+        </div>
+        <div fxFill fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+          <div fxFlex="22"  class="detail_Title" >Membres : </div>
+          <div fxLayout="row" fxLayoutAlign="start space-between" *ngFor="let etudiant of etudiants">
+            {{etudiant.prenomEtu}} {{etudiant.nomEtu}}
+          </div>
+        </div>
+        
+        
+      </div>
+
+    
+      
+    </md-card-header>
+  </div>
+ 
+<md-dialog-actions>
+  <button md-button (click)="callback.cancel()" ><i class="material-icons md-light ">undo</i>Retour</button>
+  
+</md-dialog-actions>

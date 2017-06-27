@@ -1,0 +1,17 @@
+<h2> 
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <md-icon md-list-icon style="margin:10px" class="md-lightblue">group</md-icon> Groupe
+  </div>  
+  <md-divider></md-divider> 
+</h2>
+
+<md-dialog-content>
+
+  Etes vous sur de vouloir supprimer ce groupe ?
+  
+ 
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="dialogRef.close()" ><i class="material-icons md-light ">clear</i>Non</button>
+  <button  md-button (click)="deleteGroupe()">Oui <i class="material-icons md-light ">done</i></button>
+</md-dialog-actions>

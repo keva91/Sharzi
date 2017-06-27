@@ -20,11 +20,15 @@ import { EnsProjetCreateComponent } from './ens-projet/ens-projet-create/ens-pro
 import { EnsProjetDetailsComponent } from './ens-projet/ens-projet-details/ens-projet-details.component';
 import { EnsProjetDeleteComponent } from './ens-projet/ens-projet-delete/ens-projet-delete.component';
 import { EnsGroupeComponent } from './ens-groupe/ens-groupe.component';
+import { EnsGroupeCreateComponent } from './ens-groupe/ens-groupe-create/ens-groupe-create.component';
+import { EnsGroupeDeleteComponent } from './ens-groupe/ens-groupe-delete/ens-groupe-delete.component';
+import { EnsGroupeViewComponent } from './ens-groupe/ens-groupe-view/ens-groupe-view.component';
 import { EnsNoteComponent } from './ens-note/ens-note.component';
 import { EnsJalonsComponent } from './ens-jalons/ens-jalons.component';
 import { EnsJalonCreateComponent } from './ens-jalons/ens-jalon-create/ens-jalon-create.component';
 import { EnsJalonDetailComponent } from './ens-jalons/ens-jalon-detail/ens-jalon-detail.component';
 import { EnsJalonDeleteComponent } from './ens-jalons/ens-jalon-delete/ens-jalon-delete.component';
+import { EnsJalonViewComponent } from './ens-jalons/ens-jalon-view/ens-jalon-view.component';
 import { HomeEtudiantComponent } from './home-etudiant/home-etudiant.component';
 import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
 
@@ -37,6 +41,9 @@ import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
     EnsProjetComponent,
     EnsProjetCreateComponent,
     EnsGroupeComponent,
+    EnsGroupeCreateComponent,
+    EnsGroupeDeleteComponent,
+    EnsGroupeViewComponent,
     EnsNoteComponent,
     EnsJalonsComponent,
     EnsJalonCreateComponent,
@@ -46,7 +53,8 @@ import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
     EnsProjetDetailsComponent,
     EnsProjetDeleteComponent,
     EnsJalonDetailComponent,
-    EnsJalonDeleteComponent
+    EnsJalonDeleteComponent,
+    EnsJalonViewComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +64,12 @@ import { TdbComponent } from  './ens-tableaudebord/ens-tdb.component';
     ReactiveFormsModule,
     MdDialogModule 
   ],
-  entryComponents: [EnsJalonDetailComponent,EnsProjetDeleteComponent,EnsJalonDeleteComponent],
+  entryComponents: [
+    EnsJalonDetailComponent,
+    EnsProjetDeleteComponent,
+    EnsJalonDeleteComponent,
+    EnsGroupeDeleteComponent],
+    
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -204,6 +204,7 @@ app.delete('/projet/:id?',function(req,res,next)
 
                     if(err){
                         console.log('error supp projet')
+                        console.log(err)
                         res.json(err);
                     }else{
                         res.json(rows);

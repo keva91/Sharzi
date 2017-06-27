@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import {MdSnackBar,MdDialog} from '@angular/material';
+import {Http, Headers} from '@angular/http';
+import { EnsGroupeDeleteComponent } from '../ens-groupe/ens-groupe-delete/ens-groupe-delete.component';
 
 @Component({
   selector: 'app-ens-groupe',
@@ -8,19 +11,18 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class EnsGroupeComponent implements OnInit {
 
- constructor(public fbG: FormBuilder) { }
+ constructor(
+    private http: Http,
+    public dialog: MdDialog) { }
+
 
   selectedTab = 0;
+  groupeSelected = null;
 
-   projets = [
-    {nom:'projet 1', description:'Descrition du projet 1',date: new Date('2017/06/28')    },
-    {nom:'projet 2', description:'Descrition du projet 2',date: new Date('2017/06/25')    }
-  ]
+  listGroupes  = [];
+  listProjets  = [];
+  listEtudiants  = [];
 
-  groupes = [
-    {nom:'groupe 1', nombre:'3',  projet: this.projets[0]   },
-    {nom:'groupe 2', nombre:'4',  projet: this.projets[1] }
-  ]
 
  
 
@@ -29,34 +31,96 @@ export class EnsGroupeComponent implements OnInit {
           { title: 'Liste Groupes', type: "list"}
         ]
 
-  test = function(){
-    console.log("test")
-  }
+
 
   ngOnInit() {
+    this.getGroupes();
+    this.getProjets();
     
   }
-  addTab(){
-    console.log(this.tabs.length)
-    if(!(this.tabs.length > 1) ){
-      this.tabs.push({ title: 'Creation Groupe', type: 'creation'});
-      this.selectedTab = 1;
-      }    
+
+
+  callbacksFunctions =  { 
+    cancel : this.cancel.bind(this)
   }
 
-  public groupeForm = this.fbG.group({
-    name: ["", Validators.required],
-    nombre: ["", Validators.required],
-    projet: ["", Validators.required],
-  });
- 
-  createGroupe(event) {
-    console.log(event);
-    console.log(this.groupeForm.value);
-    this.groupes.push({ nom: this.groupeForm.value.name, nombre: this.groupeForm.value.nombre, projet:this.groupeForm.value.projet});
-    this.tabs.splice(1, 1,)
-    this.selectedTab = 0;
-    console.log(this.groupes)
+  cancel(res){
+    if(res){
+      this.getGroupes();
+    }
+    this.tabs.splice(1, 1,);
   }
+
+
+
+  getGroupes(){
+    let headers = new Headers();
+    this.http.get('http://localhost:3000/groupe').map(res => res.json()).subscribe(data =>{
+      console.log(data);
+      this.listGroupes = data;
+
+    })
+  }
+
+
+  getProjets(){
+    let headers = new Headers();
+    this.http.get('http://localhost:3000/projet').map(res => res.json()).subscribe(data =>{
+      console.log(data);
+      this.listProjets = data;
+
+    })
+  }
+
+
+  getGroupeDetail(groupe){
+    let headers = new Headers();
+    this.http.get('http://localhost:3000/groupe/detail/'+groupe.idG).map(res => res.json()).subscribe(data =>{
+      console.log(data);
+      this.listEtudiants = data;
+      console.log(this.listEtudiants)
+    })
+  }
+
+  addGroupe(){
+    if(!(this.tabs.length > 1) ){
+      this.tabs.push({ title: 'Creation Groupe', type: 'creationGroupe'});
+      this.selectedTab = 1;
+    }    
+  }
+
+
+  detailGroupe(groupe){
+      if(!(this.tabs.length > 1) ){
+        this.getGroupeDetail(groupe);
+        console.log('in')
+        this.groupeSelected = groupe
+        this.tabs.push({ title: 'Detail groupe', type: 'detailGroupe'});
+        this.selectedTab = 1;
+      } 
+  }
+
+ 
+
+
+  deleteGroupe(groupe){
+    console.log(groupe)
+    let dialogRef = this.dialog.open(EnsGroupeDeleteComponent, {
+      width: '400px',
+      data: groupe.idG
+    });
+    dialogRef.afterClosed().subscribe(result => {
+          
+          console.log(result)
+          if(result){
+            console.log('supp')
+            this.getGroupes();
+            this.getProjets();
+          }else{
+            console.log('nop')
+          }
+    });
+
+  } 
 
 }

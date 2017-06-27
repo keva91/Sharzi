@@ -1,0 +1,43 @@
+<h2> 
+  <div fxLayout="row" fxLayoutAlign="start center">
+    <md-icon md-list-icon style="margin:10px" class="md-lightblue">description</md-icon> Jalon
+  </div>  
+  <md-divider></md-divider> 
+</h2>
+
+<md-dialog-content>
+  
+    
+  <md-card-header fxLayout="row" fxLayoutAlign="start start" style="margin: 0px 0 35px 0;">
+    <div fxFlex="35" fxLayout="column" fxLayoutAlign="start"  fxLayoutGap="10px" >
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px">
+        <div fxFlex="22" class="detail_Title">Nom : </div>
+        <div>{{jalon.nomJ}}</div>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" >
+        <div fxFlex="22" class="detail_Title" >Date : </div>
+        <div>{{jalon.date_finJ | date}}</div>
+      </div>
+      
+    </div>
+
+    <div fxLayout="row" fxFlex fxLayoutAlign="start start" fxLayoutGap="10px" style="padding-left: 34px;">
+    
+      <div fxFlex="28" class="detail_Title" >Description : </div>
+      <p>
+        {{jalon.descrJ}}
+      </p>
+      
+    </div>
+
+   
+    
+  </md-card-header>
+ 
+    
+</md-dialog-content>
+<md-dialog-actions>
+  <button md-button (click)="callback.cancel()" ><i class="material-icons md-light ">undo</i>Retour</button>
+  
+</md-dialog-actions>

@@ -12,16 +12,22 @@ var Groupe={
         return db.query("select * from Groupe where idG=?",id, callback);
     },
 
-    ObtTsGroupes:function(callback)
+    ObtFullGroupes:function(callback)
     {
-        return db.query("Select idG, nomG, idProjetG from Groupe order by idG", callback);
+        return db.query("Select idG,idProjetG,nomG,nbIntervenantG,nomP from Groupe,projet where  idP=idProjetG;", callback);
+    },
+
+     ObtDetailGroupe:function(id,callback)
+    {
+        console.log(id)
+        return db.query("Select idG,nomEtu,prenomEtu from Groupe,etudiant where idG=idGroupeEtu and idG=?",[id], callback);
     },
 
     ajouterGroupe:function(Groupe, callback)
     {
-        console.log("inside service");
-        console.log(Groupe.idG);
-        return db.query("Insert into Groupe values(?,?,?)",[Groupe.nomG,Groupe.nbIntervenant,Groupe.idProjet],callback);
+        console.log("ajouterGroupe");
+        console.log(Groupe.projet);
+        return db.query("Insert into Groupe values(?,?,?,?)",[null,Groupe.name,Groupe.nombre,Groupe.projet],callback);
     },
 
     modifierGroupe:function(id, Groupe, callback)

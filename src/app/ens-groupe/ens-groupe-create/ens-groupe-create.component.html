@@ -1,0 +1,43 @@
+<div>
+    
+
+    <form [formGroup]="groupeForm" style="padding:20px 0;">
+
+      <div fxLayout="row" fxLayoutAlign="start center" >
+        <md-input-container  fxFlex="20">
+          <input formControlName="name" mdInput placeholder="Nom du groupe" >
+          <div *ngIf="submitted && !groupeForm.controls['name'].valid " class="required_input">Un nom est requis  </div>
+        </md-input-container>
+
+        <md-select formControlName="projet"  fxFlex="25"  placeholder="Projet" style="margin:0 25px;margin-bottom: 6px;"  >
+          <md-option *ngFor="let projet of projets" [value]="projet">
+            {{projet.nomP}}
+          </md-option>
+        </md-select>
+        <div *ngIf="submitted && !groupeForm.controls['projet'].valid " class="required_projetGroupe">Un projet est requis  </div>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center" style="margin: 10px 0 0 0;">
+        <div style="color:rgba(0,0,0,.38)">Nbre de pers : </div> 
+        <md-slider fxFlex="35" formControlName="nombre" class="example-margin" max="7" step="1" thumb-label="true" tick-interval="1" [value]="value" style="margin:0 0 0px 37px;"> </md-slider>
+        
+      </div>
+      <div *ngIf="submitted && !groupeForm.controls['nombre'].valid " style="color:red;">Un nombre de personne est requis  </div>
+      
+    </form>
+
+
+    
+      <div fxLayout="row" fxLayoutAlign="end">
+        
+          <button (click)="callback.cancel()" md-button>Annuler <i class="material-icons md-light ">clear</i></button>
+        
+        
+          <button (click)="validerGroupe()"  md-button>Valider <i class="material-icons md-light ">done</i></button>
+        
+      </div>
+      
+    
+
+</div>
+
+

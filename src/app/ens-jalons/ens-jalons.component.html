@@ -45,9 +45,9 @@
 
             </div>
 
-            <!--<div *ngSwitchCase="'detailJalon'">
-              <app-ens-jalon-details [callback]="callbacksFunctions" [jalons]="listJalons" [projet]="projetSelected"  ></app-ens-projet-details >
-            </div>-->
+            <div *ngSwitchCase="'detailJalon'">
+              <app-ens-jalon-view [callback]="callbacksFunctions" [jalon]="jalonSelected"  ></app-ens-jalon-view >
+            </div>
           </div>
         </md-tab>
       </md-tab-group>

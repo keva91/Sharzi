@@ -23,7 +23,7 @@ var Jalon_Projet={
     },
     ObtFullJalon_ProjetParIdProjet:function(id,callback)
     {
-         return db.query("select idJalonJP,commentaireJP,NoteJP,idEtatJP,idJ,nomJ,descrJ,date_debutJ,date_finJ "
+         return db.query("select idJalonJP,idProjetJP,commentaireJP,NoteJP,idEtatJP,idJ,nomJ,descrJ,date_debutJ,date_finJ "
            +"from Jalon_Projet,jalon where idProjetJP=? and idJ=idJalonJP",[id],callback);
     },
 
@@ -40,7 +40,7 @@ var Jalon_Projet={
   
     ajouterJalon_Projet:function(data,callback)
     {
-         return db.query("Insert into Jalon_Projet (idJalonJP, idProjetJP) values ?",
+         return db.query("Insert into Jalon_Projet (idJalonJP, idProjetJP,idEtatJP) values ?",
          [data],callback);
     },
 
@@ -51,8 +51,8 @@ var Jalon_Projet={
     },
     modifierNoteJalon_Projet:function(data,callback)
     {
-         return  db.query("update Jalon_Projet set NoteJP=? where idJalonJP=?",
-             [data.note,data.id],callback);
+         return  db.query("update Jalon_Projet set NoteJP=? where idJalonJP=? and idProjetJP=?",
+             [data.note,data.id,data.idP],callback);
     },
     
     supprimerJalon_Projet:function(id,callback)
@@ -61,11 +61,11 @@ var Jalon_Projet={
     },
     supprimerJalon_ProjetByProjetId:function(id,callback)
     {
-         return db.query("DELETE FROM jalon_projet WHERE jalon_projet.idProjetJP=?;",[id],callback);
+         return db.query("DELETE FROM jalon_projet WHERE idProjetJP=?;",[id],callback);
     },
     supprimerJalon_ProjetByJalonId:function(id,callback)
     {
-         return db.query("DELETE FROM jalon_projet WHERE jalon_projet.idJalonJP=?;",[id],callback);
+         return db.query("DELETE FROM jalon_projet WHERE idJalonJP=?;",[id],callback);
     }
 };
 module.exports=Jalon_Projet;

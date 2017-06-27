@@ -5,7 +5,11 @@ var app = require('../server')
 var Groupe =require('../models/Groupe');
 var Jalon_Projet = require('../models/Jalon_Projet');
 var Projet = require('../models/Projet'); 
-var Note = require('../models/Note'); 
+var Note = require('../models/Note');
+
+var bodyParser = require('body-parser')
+
+app.use(bodyParser.json()); 
 
 var async = require('async');
 
@@ -386,6 +390,92 @@ var async = require('async');
  });
  //module.exports=Groupe;
 
+
+app.get('/groupe/:id?',function(req,res,next)
+{
+    if(req.params.id)
+    {
+        Groupe.ObtGroupeId(req.params.id,function(err,rows)
+        {
+            if(err)
+                res.json(err);
+            else
+                res.json(rows);
+        });
+
+    }
+    else
+    {
+        Groupe.ObtFullGroupes(function(err,rows)
+        {
+            if(err)
+            res.json(err);
+            else
+            res.json(rows);
+        });
+    }
+});
+
+
+app.get('/groupe/detail/:id?',function(req,res,next)
+{
+    console.log('in groupe detail')
+    if(req.params.id)
+    {
+        Groupe.ObtDetailGroupe(req.params.id,function(err,rows)
+        {
+            if(err){
+                res.json(err);
+            }else{
+                res.json(rows);
+            }
+        });
+
+    }
+   
+});
+
+app.post('/groupe',function(req,res,next){
+    console.log('in ajouter groupe')
+    console.log(req.body)
+    Groupe.ajouterGroupe(req.body,function(err,rows)
+        {
+            
+            if(err){
+                console.log('error')
+                console.log(err)
+                res.json(err);
+            }else{
+                res.json(rows);
+            }
+           
+        });
+});
+
+
+
+app.delete('/groupe/:id?',function(req,res,next){
+    console.log('in supp groupe')
+    console.log(req.params.id)
+    if(req.params.id){
+
+        Groupe.supprimerGroupe(req.params.id,function(err,rows)
+            {
+                
+                if(err){
+                    console.log('error')
+                    console.log(err)
+                    res.json(err);
+                }else{
+                    res.json(rows);
+                }
+            
+            });
+    }
+});
+
+
+
 router.get('/:id?',function(req,res,next)
 {
     if(req.params.id)
@@ -419,30 +509,3 @@ router.get('/:id?',function(req,res,next)
 });
 
 
-router.post('/GroupAjout',function(req,res,next)
-{
-    Groupe.ajouterGroupe(req.body,function(err,count)
-    {
-        if(err)
-            res.json(err);
-        else
-            res.json(req.body);//or return count for 1 &amp;amp;amp; 0
-    });
-
-    Groupe.modifierGroupe(function(err,rows)
-    {
-        if(err)
-            res.json(err); 
-        else
-            res.json(rows);
-    });
-
-     Groupe.supprimerGroupe(req.params.id,function(err,count){
-         if(err)
-             res.json(err);
-         else
-             res.json(count);
-     });
-
-
-});

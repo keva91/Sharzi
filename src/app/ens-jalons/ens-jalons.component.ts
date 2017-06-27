@@ -102,7 +102,17 @@ constructor(
     }    
   }
 
-  deleteJalon(jalon){
+   detailJalon(jalon){
+      if(!(this.tabs.length > 1) ){
+        console.log('in')
+        this.jalonSelected = jalon
+        this.tabs.push({ title: 'Detail Jalon', type: 'detailJalon'});
+        this.selectedTab = 1;
+      } 
+    }
+
+
+   deleteJalon(jalon){
     let dialogRef = this.dialog.open(EnsJalonDeleteComponent, {
       width: '400px',
       data: jalon.idJ
@@ -119,6 +129,7 @@ constructor(
           }
     });
 
-  }
+  } 
+
 
 }

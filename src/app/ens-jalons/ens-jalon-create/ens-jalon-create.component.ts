@@ -73,34 +73,7 @@ export class EnsJalonCreateComponent implements OnInit {
 
 
 
-  
-  
-  /*createJalon(event) {
-    this.submitted = true;
-    console.log(this.jalonsForm)
 
-    if( this.jalonsForm.valid ) {
-      console.log('valid')
-      this.jalonsForm.value.list = this.selectedProjects
-      this.jalonsForm.value.dateStart = new Date().toISOString().substring(0, 10);
-      this.jalonsForm.value.date = this.jalonsForm.value.date.toISOString().substring(0, 10);
-      console.log(this.jalonsForm.value);
-      
-      this.http.post('http://localhost:3000/jalon',this.jalonsForm.value).map(res => res.json()).subscribe(data =>{
-        console.log(data);
-        if(data){
-          this.snackBar.open('Jalon enregistré !','', {
-              duration: 2500, extraClasses:['snackbarSuccess']
-          });
-          this.callback.cancel();
-        }
-        
-
-      })
-    }
-    
-  
-  }*/
 
 
 

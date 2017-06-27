@@ -30,10 +30,12 @@ export class EnsJalonDetailComponent implements OnInit{
   modifyJalon(event){
 
     console.log('modify')
+    console.log(this.jalon)
 
 
     if( this.jalonForm.value.note ) {
       this.jalonForm.value.id = this.jalon.idJalonJP
+      this.jalonForm.value.idP = this.jalon.idProjetJP
       
       
       this.http.put('http://localhost:3000/Jalon-Projet/projet',this.jalonForm.value).map(res => res.json()).subscribe(data =>{
@@ -54,7 +56,7 @@ export class EnsJalonDetailComponent implements OnInit{
 
 
   ngOnInit() {
-    
+  
   }
 
 }

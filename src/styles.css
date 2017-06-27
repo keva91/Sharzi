@@ -36,6 +36,15 @@ body{
     color: red
 }
 
+.required_projetGroupe{
+    position: relative;
+    top: 34px;
+    left: -274px;
+    color: red;
+}
+
+
+
 
 .datepicker_nomargin{
     margin: 0px !important;
