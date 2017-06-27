@@ -20,3 +20,21 @@ Pour le Back NodeJS, aller à la racine puis src/back/ et lancer node server.js
 
 La base de données se trouve à la racine du projet et se nomme bdd3.sql
 
+
+
+Si probleme ng-semantic module : 
+
+ajouter ce code au fichier ng-semantic.d.ts qui se trouve dans le package node ng-semantic :
+
+```javascript
+import { NgModule } from '@angular/core';
+
+
+@NgModule({
+	declarations: [
+		NgSemanticModule
+	]
+})
+export declare class NgSemanticModule {
+}
+```
