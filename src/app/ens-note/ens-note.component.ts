@@ -17,6 +17,8 @@ export class EnsNoteComponent implements OnInit {
   dataTabNote;
   jalonP;  
 
+  button = false;
+
   constructor(
     private router: Router,
     private http: Http
